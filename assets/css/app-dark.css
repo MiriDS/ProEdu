@@ -85,7 +85,9 @@ File: Main Css (Dark) File
   margin-bottom: 5px; }
 
 .weekly li:hover > .card,
-.weekly li.selected > .card,
+.weekly li.selected > .card {
+  background-color: #caebbe; }
+
 .msk-blocks li:hover > .card,
 .msk-blocks li.selected > .card {
   background-color: #AB69C6;
