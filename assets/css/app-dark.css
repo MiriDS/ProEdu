@@ -69,6 +69,9 @@ File: Main Css (Dark) File
   font-size: 13px;
   margin-top: 5px; }
 
+.tac {
+  text-align: center; }
+
 /* 2. Topbar */
 #page-topbar {
   position: fixed;
