@@ -37,8 +37,8 @@
             
                             <div class="dropdown d-inline-block">
                                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" alt="Tahirə Hüseynova">
-                                    <span class="d-none d-sm-inline-block ml-1">Tahirə Hüseynova</span>
+                                    <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" alt="Mahir Hüseynov">
+                                    <span class="d-none d-sm-inline-block ml-1">Mahir Hüseynov</span>
                                     <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
@@ -96,7 +96,7 @@
                         <div class="container-fluid">
                             <div class="row align-items-center">
                                 <div class="col-md-8">
-                                    <h4 class="page-title mb-1">Dərs cədvəli</h4>
+                                    <h4 class="page-title mb-1">1B sinifin dərs cədvəli</h4>
                                     <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item active">Welcome to ProEdu</li>
                                     </ol>
@@ -201,11 +201,12 @@
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Dərs</th>
-                                                            <th scope="col">Başlanma vaxtı</th>
-                                                            <th scope="col">Bitmə vaxtı</th>
+                                                            <th scope="col">Başlanma</th>
+                                                            <th scope="col">Bitmə</th>
                                                             <th scope="col">Fənn</th>
-                                                            <th scope="col">Sinif</th>
-                                                            <th scope="col">Distant dərs</th>
+                                                            <th scope="col">Müəllim</th>
+                                                            <th scope="col">Dərsə qoşul</th>
+                                                            <th scope="col">Status</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -218,11 +219,14 @@
                                                             <td>
                                                                 Fizika
                                                             </td>
-                                                            <td>2A</td>
+                                                            <td>Tahirə Hüseynova</td>
                                                             <td>
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Online dərsi başlat">
+                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Online dərsə keçid al">
                                                                     <i class="mdi mdi-camera"></i>
                                                                 </button>
+                                                            </td>
+                                                            <td>
+                                                                <span class="badge badge-danger">Bitib</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -234,11 +238,14 @@
                                                             <td>
                                                                 Tarix
                                                             </td>
-                                                            <td>5A</td>
+                                                            <td>Tahirə Hüseynova</td>
                                                             <td>
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Online dərsi başlat">
+                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Online dərsə keçid al">
                                                                     <i class="mdi mdi-camera"></i>
                                                                 </button>
+                                                            </td>
+                                                            <td>
+                                                                <span class="badge badge-primary">Davam edir (və ya başlanıb)</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -250,11 +257,14 @@
                                                             <td>
                                                                 Riaziyyat
                                                             </td>
-                                                            <td>3C</td>
+                                                            <td>Tahirə Hüseynova</td>
                                                             <td>
-                                                                <button disabled type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Online dərsi başlat">
+                                                                <button disabled type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Online dərsə keçid al">
                                                                     <i class="mdi mdi-camera"></i>
                                                                 </button>
+                                                            </td>
+                                                            <td>
+                                                                <span class="badge badge-info">Növbəti</span>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -278,13 +288,6 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-                                            </div>
-
-                                            <div class="mt-4 tac">
-                                                <div class="alert alert-danger mb-0" role="alert">
-                                                    Sizə hec bir  dərs təyin edilməmişdır! <br />
-                                                    Zəhmət olmasa sistem inzibatçısı AKİF SULTANOV (<a href="#" class="alert-link">akif@10M.az</a>) müraciət edəsiniz!
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
