@@ -44,27 +44,57 @@ File: Main Css (RTL) File
       -ms-flex-align: center;
           align-items: center; }
 
+.msk-blocks {
+  padding: 0;
+  margin: 0 0 24px 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
 .weekly li {
   cursor: pointer;
   min-width: 160px; }
 
-.weekly li > .card {
+.msk-blocks li {
+  margin-right: 15px;
+  cursor: pointer;
+  width: 150px; }
+
+.msk-blocks li span {
+  font-weight: 700;
+  font-size: 20px; }
+
+.msk-blocks li .name {
+  font-weight: 700; }
+
+.msk-blocks li i {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 32px;
+  opacity: 0.3; }
+
+.weekly li > .card,
+.msk-blocks li > .card {
   margin-bottom: 5px; }
 
 .weekly li:hover > .card,
-.weekly li.selected > .card {
-  background-color: #caebbe; }
-
-.weekly li:first-child {
-  padding-top: 0; }
-
-.weekly li:last-child {
-  border-bottom: 0;
-  padding-bottom: 0; }
+.weekly li.selected > .card,
+.msk-blocks li:hover > .card,
+.msk-blocks li.selected > .card {
+  background-color: #AB69C6;
+  color: #fff; }
 
 .weekly li .name {
   font-size: 15px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+  font-weight: 600; }
 
 .weekly li span {
   font-size: 13px;
