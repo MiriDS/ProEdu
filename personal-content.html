@@ -34,7 +34,11 @@
 
     var addModal = $("#personAddModal");
     function getPersons() {
+
         var table = $("#person_table");
+
+        table.find('tbody').prepend(loadingHtml);
+
         standartRequest(requestType.get,apiRoute,'', function(data) {
 
             table.find('tbody').html('');

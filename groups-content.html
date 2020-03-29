@@ -154,6 +154,8 @@
     function getGroups() {
         var table = $("#groups_table");
         var number = getActiveGroupNumber();
+
+        table.find('tbody').prepend(loadingHtml);
         standartRequest(requestType.get,groupApiRoute+'?group='+number,'', function(data) {
 
             table.find('tbody').html('');
@@ -264,6 +266,8 @@
 
         var table = $("#students_table");
         var group_id = $("#groups_table tbody .selected").attr('row_id');
+
+        table.find('tbody').prepend(loadingHtml);
         standartRequest(requestType.get,studentApiRoute+'?group_id='+group_id,'', function(data) {
 
             table.find('tbody').html('');

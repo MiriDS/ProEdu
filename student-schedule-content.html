@@ -1,79 +1,79 @@
 <div class="col-xl-12">
     <ul class="weekly">
-        <li class="selected">
+        <li day="1">
             <div class="card">
                 <div class="card-body">
                     <div class="name">
                         Bazar ertəsi
-                        <span class="badge badge-primary ml-1">3</span>
+                        <!--<span class="badge badge-primary ml-1">3</span>-->
                     </div>
-                    <span>23.03.2020</span>
+                    <span class="date"></span>
                 </div>
             </div>
         </li>
-        <li>
+        <li day="2">
             <div class="card">
                 <div class="card-body">
                     <div class="name">
                         Çərşənbə axşamı
-                        <span class="badge badge-primary ml-1">3</span>
+                        <!--<span class="badge badge-primary ml-1">3</span>-->
                     </div>
-                    <span>24.03.2020</span>
+                    <span class="date"></span>
                 </div>
             </div>
         </li>
-        <li>
+        <li day="3">
             <div class="card">
                 <div class="card-body">
                     <div class="name">
                         Çərşənbə
-                        <span class="badge badge-primary ml-1">3</span>
+                        <!--<span class="badge badge-primary ml-1">3</span>-->
                     </div>
-                    <span>25.03.2020</span>
+                    <span class="date"></span>
                 </div>
             </div>
         </li>
-        <li>
+        <li day="4">
             <div class="card">
                 <div class="card-body">
                     <div class="name">
                         Cümə axşamı
-                        <span class="badge badge-primary ml-1">0</span>
+                        <!--<span class="badge badge-primary ml-1">0</span>-->
                     </div>
-                    <span>26.03.2020</span>
+                    <span class="date"></span>
                 </div>
             </div>
         </li>
-        <li>
+        <li day="5">
             <div class="card">
                 <div class="card-body">
                     <div class="name">
                         Cümə
-                        <span class="badge badge-primary ml-1">0</span>
+                        <!--<span class="badge badge-primary ml-1">0</span>-->
                     </div>
-                    <span>27.03.2020</span>
+                    <span class="date"></span>
                 </div>
             </div>
         </li>
-        <li>
+        <li day="6">
             <div class="card">
                 <div class="card-body">
                     <div class="name">
                         Şənbə
-                        <span class="badge badge-primary ml-1">2</span>
+                        <!--<span class="badge badge-primary ml-1">2</span>-->
                     </div>
-                    <span>28.03.2020</span>
+                    <span class="date"></span>
                 </div>
             </div>
         </li>
-        <li>
+        <li day="7">
             <div class="card">
                 <div class="card-body">
                     <div class="name">
                         Bazar
-                        <span class="badge badge-primary ml-1">1</span>
+                        <!--<span class="badge badge-primary ml-1">1</span>-->
                     </div>
-                    <span>29.03.2020</span>
+                    <span class="date"></span>
                 </div>
             </div>
         </li>
@@ -82,10 +82,10 @@
 <div class="col-xl-12">
     <div class="card">
         <div class="card-body">
-            <h5 class="header-title mb-4">28.03.2020 tarİxİnə olan dərs cədvəlİ.</h5>
+            <h5 class="header-title mb-4"><span id="selectedDate"></span> tarixinə olan dərs cədvəli.</h5>
 
             <div class="table-responsive">
-                <table class="table table-centered table-hover mb-0">
+                <table id="student-schedule-table" class="table table-centered table-hover mb-0">
                     <thead>
                     <tr>
                         <th scope="col">Dərs</th>
@@ -97,22 +97,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">
-                                # 1
-                            </th>
-                            <td>09:00</td>
-                            <td>10:00</td>
-                            <td>
-                                Fizika
-                            </td>
-                            <td>Tahirə Hüseynova</td>
-                            <td>
-                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Online dərsə keçid al">
-                                    <i class="mdi mdi-camera"></i>
-                                </button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -123,6 +107,61 @@
 
 <script>
 
-    $("#activeModuleName").text(personInfo.groupNumber+personInfo.groupName+" sinifin dərs cədvəli");
+    var table = $('#student-schedule-table');
+    var groupApiRoute = "student-dashboard";
+    var studentScheduleCache = {};
+    function getStudentLessons(day) {
 
+
+        console.log(studentScheduleCache);
+        if(typeof studentScheduleCache[day] == 'undefined') {
+
+            table.append(loadingHtml);
+            standartRequest(requestType.get,groupApiRoute+'/'+day,'', function(data) {
+                studentScheduleCache[day] = data;
+                initTable(data);
+                $('#loadingHtml').remove();
+            });
+        }
+        else {
+            initTable(studentScheduleCache[day]);
+        }
+
+
+    }
+
+    function initTable(data) {
+
+        table.find('tbody').html('');
+        for(var n in data) {
+            table.find('tbody').append('<tr><th scope="row">'+(n+1)+'</th><td>'+(data[n].startsAt)+'</td><td>'+(data[n].endsAt)+'</td><td>'+_.escape(data[n].name)+'</td><td>'+(_.escape(data[n].teacherLastname)+' '+_.escape(data[n].teacherName))+'</td><td><button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Online dərsə keçid al"><i class="mdi mdi-camera"></i></button></td></tr>');
+        }
+    }
+
+    $("li[day]").click(function() {
+
+       var day = $(this).attr('day');
+       var date = $(this).find('.date').text();
+
+       if($(this).hasClass('selected'))
+           return;
+
+        $("li[day].selected").removeClass('selected');
+        $(this).addClass('selected');
+
+        $("#selectedDate").text(date);
+
+        getStudentLessons(day);
+
+    });
+
+
+    var weekDays = getCurrentWeekDays();
+    for(var n in weekDays) {
+
+        $('li[day="'+(parseInt(n)+1)+'"]').find('.date').text(weekDays[n].format('DD.MM.YYYY'));
+    }
+
+    $("li[day]").first().click();
+    $("#activeModuleName").text(personInfo.groupNumber+personInfo.groupName+" sinifin dərs cədvəli");
 </script>

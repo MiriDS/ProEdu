@@ -92,8 +92,8 @@
                         <div class="collapse navbar-collapse" id="topnav-menu-content">
                             <ul class="navbar-nav">
 
-                                <li class="nav-item" menu-item="teacher-schedule" role-scope="teacher">
-                                    <a class="nav-link">
+                                <li class="nav-item" role-scope="teacher">
+                                    <a class="nav-link" menu-item href="#teacher-schedule">
                                         Dərs cədvəli
                                     </a>
                                 </li>
@@ -114,7 +114,7 @@
                                                 <a href="#personal" menu-item class="dropdown-item">Personal</a>
                                                 <a href="#subject" menu-item class="dropdown-item">Fənn</a>
                                                 <a href="#groups" menu-item class="dropdown-item">Sinif / Qrup</a>
-                                                <a href="#schedule" class="dropdown-item">Cədvəl</a>
+                                                <a href="#schedule" menu-item class="dropdown-item">Cədvəl</a>
                                             </div>
                                         </div>
                                     </div>
@@ -140,7 +140,7 @@
                 <div class="container-fluid">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title mb-1" id="activeModuleName">Personal</h4>
+                            <h4 class="page-title mb-1" id="activeModuleName"></h4>
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item active" id="tenantName">Welcome to ProEdu</li>
                             </ol>
@@ -219,6 +219,64 @@
         </div>
 
         <!-- End Page-content -->
+
+
+        <div class="modal fade bs-lesson-add-modal" tabindex="-1" role="dialog" id="lessonAddModal" aria-labelledby="lessonAddModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0">Dərsin əlavəsi</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <input type="hidden" name="row_id">
+                    <form>
+                        <input type="hidden" name="group">
+                        <input type="hidden" name="weekday">
+
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">Fənn</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" name="subject">
+                                        <option>Fənni seçin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">Müəllim</label>
+                                <div class="col-md-8">
+                                    <select name="teacher" class="form-control">
+                                        <option>Müəllimi seçin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="start-time" class="col-md-4 col-form-label">Başlama saatı</label>
+                                <div class="col-md-8">
+                                    <input name="lessonStartsAt" class="form-control" type="time" id="start-time">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="end-time" class="col-md-4 col-form-label">Bitmə saatı</label>
+                                <div class="col-md-8">
+                                    <input name="lessonEndsAt"  class="form-control" type="time" id="end-time">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <div class="mt-4">
+                            <button class="btn btn-secondary waves-effect waves-light" data-dismiss="modal" type="submit">Bağla</button>
+                            <button class="btn btn-primary waves-effect waves-light" onclick="saveLesson()" type="submit">Əlavə et</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
 
         <div id="personAddModal" class="modal fade bs-personal-add-modal" tabindex="-1" role="dialog" aria-labelledby="personAddModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md">
@@ -401,6 +459,8 @@
 <script src="assets/js/sweetalert.min.js"></script>
 <script>
 
+    window.addEventListener("hashchange", hashChange, false);
+
     var group_numbers = {
         '1':'1',
         '2':'2',
@@ -423,24 +483,42 @@
     };*/
 
     function initUserInformation() {
+
         $("#person_name").text(personInfo.lastname+' '+personInfo.name);
 
         if(personInfo.role==1) {
+
+            $("[role-scope='student'],[role-scope='teacher']").remove();
+
             $("[role-scope='admin']").attr('style','display:flex');
         }
         else if(personInfo.role==2) {
-            $("[role-scope='teacher']").show();
+            $("[role-scope='admin'],[role-scope='student']").remove();
+            //location.hash = "teacher-schedule";
+            return;
         }
         else if(personInfo.role==3) {
 
-            $("[role-scope='admin']").attr('style','"display:flex"');
+            $("[role-scope='student']").remove();
 
+            $("[role-scope='admin']").attr('style','display:flex');
             $("[role-scope='teacher']").show();
+
         }
         else if(personInfo.role==4) {
-            location.hash = "student-schedule";
-            //$("[role-scope='student']").show();
+            $("[role-scope='admin'],[role-scope='teacher']").remove();
+            //location.hash = "student-schedule";
+            //return;
         }
+
+
+        if(location.hash.replace(/^#/,'')=="") {
+            location.hash = $('[menu-item]:eq(0)').attr('href');//.click();
+        }
+        else {
+            hashChange();
+        }
+
     }
 
 
@@ -453,13 +531,7 @@
     getUserInformation();
 
 
-    window.addEventListener("hashchange", hashChange, false);
-    if(location.hash.replace(/^#/,'')=="") {
-        location.hash = $('.sidebar-nav').find('a:eq(0)').attr('href');//.click();
-    }
-    else {
-        hashChange();
-    }
+
 
     var module_name = "";
     function hashChange() {
@@ -499,6 +571,10 @@
 
     $("#tenantName").text(tenantInformation.name);
 
+    var loadingHtml = '<div id="loadingHtml" class="d-flex hull-height-spinner-opacity">\n' +
+        '                        <div class="spinner-border text-primary" role="status">\n' +
+        '                            <span class="sr-only">Loading...</span>\n' +
+        '                        </div>';
 </script>
 
 </body>

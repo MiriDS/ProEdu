@@ -17,7 +17,13 @@ if(typeof localStorage.accessToken != 'undefined' && typeof localStorage.tenantI
     logout();
 }
 
-var tenantInformation = JSON.parse(localStorage.tenantInfo);
+if(typeof localStorage.tenantInfo == 'undefined')
+    var tenantInformation = {};
+else
+    var tenantInformation = JSON.parse(localStorage.tenantInfo);
+
+
+
 var personInfo = {};
 
 
@@ -298,3 +304,15 @@ function modalEmpty(modalId,callBackFuncName) {
     return notify;
 
 }());
+
+
+const getCurrentWeekDays = () => {
+    const weekStart = moment().startOf('isoWeek');
+
+    const days = [];
+    for (let i = 0; i <= 6; i++) {
+        days.push(moment(weekStart).add(i, 'days'));
+    }
+
+    return days;
+}

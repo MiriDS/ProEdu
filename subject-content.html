@@ -31,6 +31,9 @@
     var addModal = $("#subjectAddModal");
     function getSubjects() {
         var table = $("#subject_table");
+
+        table.find('tbody').prepend(loadingHtml);
+
         standartRequest(requestType.get,apiRoute,'', function(data) {
 
             table.find('tbody').html('');

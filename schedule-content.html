@@ -1,0 +1,346 @@
+
+<div class="row justify-content-md-center">
+    <div class="col-xl-3">
+        <div class="card">
+            <div class="card-header bg-transparent border-bottom">
+                Sinif nömrə
+            </div>
+            <div class="card-body">
+                <select class="form-control" name="group_number">
+                    <option selected disabled>Nömrəni seçin</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3">
+        <div class="card">
+            <div class="card-header bg-transparent border-bottom">
+                Sinif hərfi
+            </div>
+            <div class="card-body">
+                <select class="form-control" name="group_id" disabled>
+                    <option selected disabled>Hərfi seçin</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-xl-12">
+        <h4 class="mt-4 mb-4"><b id="activeGroupName"></b> sinifinin dərs cədvəli</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div>
+                <table class="table table-centered mb-0 table-bordered border-color" id="lesson-table">
+                    <thead>
+                    <tr>
+                        <th width="300">Bazar ertəsi</th>
+                        <th width="300">Çərşənbə axşamı</th>
+                        <th width="300">Çərşənbə</th>
+                        <th width="300">Cümə axşamı</th>
+                        <th width="300">Cümə</th>
+                        <th width="300">Şənbə</th>
+                        <th width="300">Bazar</th>
+                    </tr>
+                    <tr>
+                        <th width="300">
+                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" onclick="checkAndAddLesson(1)">
+                                <i class="mdi mdi-plus" ></i>
+                                Dərs əlavə et
+                            </button>
+                        </th>
+                        <th width="300">
+                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light"  onclick="checkAndAddLesson(2)">
+                                <i class="mdi mdi-plus" ></i>
+                                Dərs əlavə et
+                            </button>
+                        </th>
+                        <th width="300">
+                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" onclick="checkAndAddLesson(3)">
+                                <i class="mdi mdi-plus" ></i>
+                                Dərs əlavə et
+                            </button>
+                        </th>
+                        <th width="300">
+                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" onclick="checkAndAddLesson(4)">
+                                <i class="mdi mdi-plus" ></i>
+                                Dərs əlavə et
+                            </button>
+                        </th>
+                        <th width="300">
+                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" onclick="checkAndAddLesson(5)">
+                                <i class="mdi mdi-plus" ></i>
+                                Dərs əlavə et
+                            </button>
+                        </th>
+                        <th width="300">
+                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" onclick="checkAndAddLesson(6)">
+                                <i class="mdi mdi-plus" ></i>
+                                Dərs əlavə et
+                            </button>
+                        </th>
+                        <th width="300">
+                            <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" onclick="checkAndAddLesson(7)">
+                                <i class="mdi mdi-plus" ></i>
+                                Dərs əlavə et
+                            </button>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody ></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var addModal = $("#lessonAddModal");
+
+    var lessonList = [];
+    var groupCache = {};
+
+    for(var n in group_numbers) {
+        $("[name=group_number]").append('<option value="'+n+'">'+group_numbers[n]+'</option>');
+    }
+    $("[name=group_number]").change(function () {
+
+        var group_number = $(this).val();
+        var groupSelect = $("[name=group_id]");
+
+        groupSelect.find('[value]').remove();
+
+        if(group_number>0) {
+            groupSelect.removeAttr('disabled');
+        }
+        else {
+            groupSelect.attr('disabled',1);
+        }
+
+        if(typeof groupCache[group_number] == 'undefined') {
+
+            groupSelect.before(loadingHtml);
+            standartRequest(requestType.get,'group'+'?group='+group_number,'', function(data) {
+
+                $("#loadingHtml").remove();
+
+                groupCache[group_number] = data;
+                for(var n in data) {
+                    groupSelect.append('<option value="'+data[n]['id']+'">'+(_.escape(data[n]['name']))+'</td></option>');
+                }
+            });
+        }
+        else {
+            data = groupCache[group_number];
+            for(var n in data) {
+                groupSelect.append('<option value="'+data[n]['id']+'">'+(_.escape(data[n]['name']))+'</td></option>');
+            }
+        }
+
+        getLessons();
+    });
+
+    var scheduleApiRoute = 'group-schedules';
+    var weekDayKeys = {
+        0:"Monday" ,
+        1:"Tuesday",
+        2:"Wednesday",
+        3:"Thursday",
+        4:"Friday",
+        5:"Saturday",
+        6:"Sunday"
+    };
+    $("[name=group_id]").change(function () {
+
+        var group_number = $("[name=group_number]").val();
+        var group_id = $("[name=group_id]").val();
+        var group_name = $("[name=group_id]").find(":selected").text();
+        if((group_id>0)==false)
+            return;
+
+        $("#activeGroupName").text(group_number+group_name);
+        getLessons();
+
+
+    });
+
+
+    function checkAndAddLesson(dayNumber)
+    {
+        var group = $("[name=group_id]").val();
+        if((group>0)==false){
+            alert('İlk öncə sinifi seçin');
+            return;
+        }
+
+        addModal.find("[name=weekday]").val(dayNumber);
+        addModal.find("[name=group]").val(group);
+        addModal.modal('show');
+    }
+
+    function saveLesson() {
+
+        var saveModal = addModal;
+        var data_mas = saveModal.find('form').serializeArray();
+        var rowId = saveModal.find('[name=row_id]').val();
+
+        for(var b in data_mas ) {
+            if(data_mas[b].name=="group" || data_mas[b].name=="weekday" || data_mas[b].name=="subject" || data_mas[b].name=="teacher" ) {
+                data_mas[b].value=parseInt(data_mas[b].value);
+            }
+            else if(data_mas[b].name=="lessonStartsAt" || data_mas[b].name=="lessonEndsAt") {
+                data_mas[b].value += ':00';
+            }
+        }
+
+        var data = ArrayToJson(data_mas);
+        var rType = requestType.post;
+        var url = scheduleApiRoute;
+        if( typeof rowId != "undefined" && parseInt(rowId)>0) {
+            rType = requestType.put;
+            url += "/"+rowId;
+        }
+        standartRequest(rType,url,data, function() {
+
+            getLessons();
+            modalEmpty("lessonAddModal");
+            saveModal.modal('hide');
+        });
+    }
+
+
+    standartRequest(requestType.get,'subjects','', function(data) {
+        addModal.find('[name=subject]').html('');
+        for(var n in data) {
+            addModal.find('[name=subject]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['name'])+'</option>')
+        }
+    });
+
+    standartRequest(requestType.get,'employees','', function(data) {
+        addModal.find('[name=teacher]').html('');
+        for(var n in data) {
+            addModal.find('[name=teacher]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['lastName'])+' '+_.escape(data[n]['name'])+'</option>');
+        }
+    });
+
+
+    function getLessons() {
+
+        var group_id = $("[name=group_id]").val();
+
+        if((group_id>0)==false)
+            return;
+
+        $("#lesson-table tbody").append(loadingHtml);
+
+        standartRequest(requestType.get,scheduleApiRoute+'/'+group_id,'',function(data) {
+
+            $("#loadingHtml").remove();
+
+            var maxRowColumn = 0 ;
+            for(var n in data) {
+                maxRowColumn = maxRowColumn<data[n].length?data[n].length:maxRowColumn;
+            }
+
+            $("#lesson-table tbody").html('');
+
+            var tbody_html = "";
+            for (var i = 0; i < maxRowColumn; i++) {
+                tbody_html += '<tr>';
+
+                for(t = 0;t <= 6; t++) {
+                    tbody_html += '<td>Yoxdur</td>';
+                }
+
+                tbody_html += '</tr>';
+            }
+            $("#lesson-table tbody").html(tbody_html);
+
+
+            for(var n in weekDayKeys) {
+                var dayName = weekDayKeys[n];
+                if(typeof data[dayName] == 'undefined')
+                    continue;
+
+                for(var z in data[dayName]) {
+
+                    var lessonData = data[dayName][z];
+
+                    $("#lesson-table tbody tr:eq("+z+")").find('td:eq('+n+')').html('<div row_id="'+lessonData.id+'" class="lesson-block">\n' +
+                        '                                <div class="subject">\n' +
+                        '                                    Fənn:\n' +
+                        '                                    <span>'+(_.escape(lessonData.name))+'</span>\n' +
+                        '                                </div>\n' +
+                        '                                <div class="teacher">\n' +
+                        '                                    Müəllim:\n' +
+                        '                                    <span>'+(_.escape(lessonData.teacherLastname)+" "+_.escape(lessonData.teacherName))+'</span>\n' +
+                        '                                </div>\n' +
+                        '                                <div class="date">\n' +
+                        '                                    Keçirilmə vaxtı:\n' +
+                        '                                    <span>'+(lessonData.startsAt+'-'+lessonData.endsAt)+'</span>\n' +
+                        '                                </div>\n' +
+                        '                                <div class="delete-lesson">\n' +
+                        '                                    <button type="button" class="btn btn-outline-danger btn-sm delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sil">\n' +
+                        '                                        <i class="mdi mdi-trash-can"></i>\n' +
+                        '                                    </button>\n' +
+                        '                                </div>\n' +
+                        '                            </div>');
+                }
+
+            }
+
+            var countNum = 1;
+            $("#lesson-table tbody tr").each(function() {
+                $(this).children('td:eq(0)').prepend('<div class="lesson-num">\n' + ( countNum++ )+'</div>');
+            })
+        });
+    }
+
+
+    function deleteLesson(row_id) {
+        standartRequest(requestType.delete,scheduleApiRoute+'/'+row_id,'', function(data) {
+            getLessons();
+        });
+    }
+
+    $("#lesson-table").on("click",".delete",function() {
+        var row_id = $(this).closest('[row_id]').attr('row_id');
+
+        swal({
+            title: 'Silmək əminsinizmi?',
+            //text: 'Your will not be able to recover this imaginary file!',
+            icon: 'warning',
+            buttons: {
+                cancel: {
+                    text: 'Bağla',
+                    value: null,
+                    visible: true,
+                    className: "",
+                    closeModal: true
+                },
+                confirm: {
+                    text: 'Bəli!',
+                    value: true,
+                    visible: true,
+                    className: "bg-danger",
+                    closeModal: true
+                }
+            }
+        }).then(function(isConfirm) {
+            if (isConfirm) {
+                deleteLesson(row_id);
+            }
+        });
+    });
+
+
+
+    $("#activeModuleName").text("Dərs cədvəli");
+
+</script>
