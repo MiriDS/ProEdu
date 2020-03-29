@@ -495,20 +495,15 @@
         else if(personInfo.role==2) {
             $("[role-scope='admin'],[role-scope='student']").remove();
             //location.hash = "teacher-schedule";
-            return;
+            //return;
         }
         else if(personInfo.role==3) {
-
             $("[role-scope='student']").remove();
-
             $("[role-scope='admin']").attr('style','display:flex');
             $("[role-scope='teacher']").show();
-
         }
         else if(personInfo.role==4) {
             $("[role-scope='admin'],[role-scope='teacher']").remove();
-            //location.hash = "student-schedule";
-            //return;
         }
 
 
