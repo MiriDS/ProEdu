@@ -157,6 +157,67 @@ File: Main Css (RTL) File
   bottom: 0;
   z-index: 1; }
 
+.horizontal-list {
+  max-width: 100%;
+  padding: 10px 0; }
+
+.horizontal-list ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.horizontal-list ul li {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 6px;
+  margin-right: 15px;
+  -webkit-box-shadow: 2px 2px 1px #dbdbdb;
+          box-shadow: 2px 2px 1px #dbdbdb;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600; }
+
+.lesson-block {
+  font-size: 14px;
+  font-weight: 500; }
+
+.lesson-block span {
+  font-weight: 700;
+  display: block;
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 2px;
+  color: #2FA97C; }
+
+.lesson-block .date span {
+  color: #B71C0C;
+  margin-bottom: 0;
+  border-bottom: none;
+  font-size: 13px; }
+
+.border-color td,
+.border-color th {
+  border-color: #a9a6a6 !important; }
+
 /* 2. Topbar */
 #page-topbar {
   position: fixed;
