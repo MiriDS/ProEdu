@@ -38,19 +38,19 @@
                             <div class="card-body p-4">
                                 <div class="p-2">
                                     <!-- <h5 class="mb-5 text-center">Sign in to continue to Xoric.</h5> -->
-                                    <form id="loginForm"  onsubmit="return false;"  class="form-horizontal">
+                                    <form class="form-horizontal" action="index.html">
 
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group form-group-custom mb-4">
-                                                    <input type="text" class="form-control" id="email" name="email" required>
-                                                    <label for="email">İstifadəçi adı</label>
+                                                    <input type="text" class="form-control" id="username" required>
+                                                    <label for="username">İstifadəçi adı</label>
                                                 </div>
+
                                                 <div class="form-group form-group-custom mb-4">
-                                                    <input type="password"  name="password" class="form-control" id="password" required>
-                                                    <label for="password">Şifrə</label>
+                                                    <input type="password" class="form-control" id="userpassword" required>
+                                                    <label for="userpassword">Şifrə</label>
                                                 </div>
-                                                <input type="hidden" name="deviceToken">
                                                 <div class="mt-4">
                                                     <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Daxil ol</button>
                                                 </div>
@@ -73,42 +73,10 @@
         <script src="assets/libs/metismenu/metisMenu.min.js"></script>
         <script src="assets/libs/simplebar/simplebar.min.js"></script>
         <script src="assets/libs/node-waves/waves.min.js"></script>
+
         <script src="https://unicons.iconscout.com/release/v2.0.1/script/monochrome/bundle.js"></script>
+
         <script src="assets/js/app.js"></script>
-        <script src="assets/js/func.js"></script>
-        <script>
-
-
-            $("#loginForm").on('submit',function() {
-                var form_data = $("#loginForm").serializeArray();
-                data = ArrayToJson(form_data)
-
-                $.ajax({
-                    url: API_URL+'login',
-                    type: 'post',
-                    data: data ,
-                    headers: {
-                        // Header_Name_One: 'Header Value One',   //If your header name has spaces or any other char not appropriate
-                        //"Header Name Two": 'Header Value Two'  //for object property name, use quoted notation shown in second
-                    },
-                    dataType: 'json',
-                    success: function (data) {
-                        if(typeof data['data'] != "undefined") {
-                            data = data['data'];
-                        }
-                        localStorage.setItem('accessToken',data['accessToken']);
-                        //location.href="index.html";
-                    },
-                    statusCode: {
-                        401: function (responseObject, textStatus, jqXHR) {
-                           alert('Email və ya şifrə yalnışdır');
-                           /// $.notify('Email və ya şifrə yalnışdır', {});
-                        },
-                    }
-                });
-
-            });
-        </script>
 
     </body>
 </html>

@@ -154,7 +154,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="selected" onclick="location.href = 'groups.html'">
+                                        <li onclick="location.href = 'groups.html'">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <span>2</span>
@@ -176,7 +176,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li onclick="location.href = 'tables.html'">
+                                        <li class="selected" onclick="location.href = 'tables.html'">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <span>4</span>
@@ -191,203 +191,416 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-xl-2">
+                            <div class="row justify-content-md-center">                                
+                                <div class="col-xl-3">
                                     <div class="card">
                                         <div class="card-header bg-transparent border-bottom">
-                                            <h5 class="header-title fcsb">
-                                                Sİnİf nömrəsİ
-                                                <button type="button" class="float-right btn btn-primary btn-sm">
-                                                    <i class="mdi mdi-plus-thick"></i>
-                                                </button>
-                                            </h5>
+                                            Sinif nömrə
                                         </div>
-                                        <div class="table-responsive h400s">
-                                            <table class="table table-centered table-hover mb-0 table-tr-cursor">
-                                                <tbody>
-                                                    <tr class="selected">
-                                                        <td>1</td>
-                                                        <td>
-                                                            <div class="btn-group float-right" role="group">
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" title="">
-                                                                    <i class="mdi mdi-trash-can"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>
-                                                            <div class="btn-group float-right" role="group">
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" title="">
-                                                                    <i class="mdi mdi-trash-can"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>
-                                                            <div class="btn-group float-right" role="group">
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" title="">
-                                                                    <i class="mdi mdi-trash-can"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input class="form-control form-control-sm" type="text" placeholder="Nömrə">
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn-group float-right" role="group">
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Yadda saxla">
-                                                                    <i class="mdi mdi mdi-content-save"></i>
-                                                                </button>
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="İmtina">
-                                                                    <i class="mdi mdi mdi-close-circle-outline"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div class="card-body">
+                                            <select class="form-control">
+                                                <option selected disabled>Nömrəni seçin</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-2">
-                                    <div class="card">                                        
+                                <div class="col-xl-3">
+                                    <div class="card">
                                         <div class="card-header bg-transparent border-bottom">
-                                            <h5 class="header-title fcsb">
-                                                Sİnİf hərfİ
-                                                <button type="button" class="float-right btn btn-primary btn-sm">
-                                                    <i class="mdi mdi-plus-thick"></i>
-                                                </button>
-                                            </h5>
+                                            Sinif hərfi
                                         </div>
-                                        <div class="table-responsive h400s">
-                                            <table class="table table-centered table-hover mb-0 table-tr-cursor">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>A</td>
-                                                        <td>
-                                                            <div class="btn-group float-right" role="group">
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sil">
-                                                                    <i class="mdi mdi-trash-can"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="selected">
-                                                        <td>B</td>
-                                                        <td>
-                                                            <div class="btn-group float-right" role="group">
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sil">
-                                                                    <i class="mdi mdi-trash-can"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>C</td>
-                                                        <td>
-                                                            <div class="btn-group float-right" role="group">
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sil">
-                                                                    <i class="mdi mdi-trash-can"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input class="form-control form-control-sm" type="text" placeholder="Hərf">
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn-group float-right" role="group">
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Yadda saxla">
-                                                                    <i class="mdi mdi mdi-content-save"></i>
-                                                                </button>
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="İmtina">
-                                                                    <i class="mdi mdi mdi-close-circle-outline"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-8">
-                                    <div class="card">                                        
-                                        <div class="card-header bg-transparent border-bottom">
-                                            <h5 class="header-title fcsb">
-                                                Şagİrd
-                                                <button type="button" class="float-right btn btn-primary btn-sm">
-                                                    <i class="mdi mdi-plus-thick"></i>
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div class="table-responsive h400s">                                            
-                                            <table class="table table-centered mb-0">
-                                                <tbody>
-                                                    <div class="d-flex hull-height-spinner-opacity">
-                                                        <div class="spinner-border text-primary" role="status">
-                                                            <span class="sr-only">Loading...</span>
-                                                        </div>
-                                                    </div>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            1
-                                                        </th>
-                                                        <td>Akif</td>
-                                                        <td>Sultanov</td>
-                                                        <td>Həsən</td>
-                                                        <td>akif@sultanov.info</td>
-                                                        <td>
-                                                            <div class="btn-group float-right" role="group">
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Düzəliş et">
-                                                                    <i class="mdi mdi-pencil"></i>
-                                                                </button>
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sil">
-                                                                    <i class="mdi mdi-trash-can"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            2
-                                                        </th>
-                                                        <td>
-                                                            <input class="form-control form-control-sm" type="text" placeholder="Adı daxil edin">
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control form-control-sm" type="text" placeholder="Soyadı daxil edin">
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control form-control-sm" type="text" placeholder="Ata adını daxil edin">
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control form-control-sm" type="text" placeholder="Email ünvanı daxil edin">
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn-group float-right" role="group">
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Yadda saxla">
-                                                                    <i class="mdi mdi mdi-content-save"></i>
-                                                                </button>
-                                                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="İmtina">
-                                                                    <i class="mdi mdi mdi-close-circle-outline"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div class="card-body">
+                                            <select class="form-control" disabled>
+                                                <option selected disabled>Hərfi seçin</option>
+                                                <option>A</option>
+                                                <option>B</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row text-center">
+                                <div class="col-xl-12">
+                                    <h4 class="mt-4 mb-4"><b>1b</b> sinifinin dərs cədvəli</h4>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="card">
+                                        <table class="table table-centered mb-0 table-bordered border-color">
+                                            <thead>
+                                                <tr>
+                                                    <th width="300">Bazar ertəsi</th>
+                                                    <th width="300">Çərşənbə axşamı</th>
+                                                    <th width="300">Çərşənbə</th>
+                                                    <th width="300">Cümə axşamı</th>
+                                                    <th width="300">Cümə</th>
+                                                    <th width="300">Şənbə</th>
+                                                    <th width="300">Bazar</th>
+                                                </tr>
+                                                <tr>
+                                                    <th width="300">
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" data-toggle="modal" data-target=".bs-lesson-add-modal">
+                                                            <i class="mdi mdi-plus" ></i>
+                                                            Dərs əlavə et
+                                                        </button>
+                                                    </th>
+                                                    <th width="300">
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" data-toggle="modal" data-target=".bs-lesson-add-modal">
+                                                            <i class="mdi mdi-plus" ></i>
+                                                            Dərs əlavə et
+                                                        </button>
+                                                    </th>
+                                                    <th width="300">
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" data-toggle="modal" data-target=".bs-lesson-add-modal">
+                                                            <i class="mdi mdi-plus" ></i>
+                                                            Dərs əlavə et
+                                                        </button>
+                                                    </th>
+                                                    <th width="300">
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" data-toggle="modal" data-target=".bs-lesson-add-modal">
+                                                            <i class="mdi mdi-plus" ></i>
+                                                            Dərs əlavə et
+                                                        </button>
+                                                    </th>
+                                                    <th width="300">
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" data-toggle="modal" data-target=".bs-lesson-add-modal">
+                                                            <i class="mdi mdi-plus" ></i>
+                                                            Dərs əlavə et
+                                                        </button>
+                                                    </th>
+                                                    <th width="300">
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" data-toggle="modal" data-target=".bs-lesson-add-modal">
+                                                            <i class="mdi mdi-plus" ></i>
+                                                            Dərs əlavə et
+                                                        </button>
+                                                    </th>
+                                                    <th width="300">
+                                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" data-toggle="modal" data-target=".bs-lesson-add-modal">
+                                                            <i class="mdi mdi-plus" ></i>
+                                                            Dərs əlavə et
+                                                        </button>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                                            
+                                                <tr>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lesson-block">
+                                                            <div class="subject">
+                                                                Fənn:
+                                                                <span>Riyaziyyat</span>
+                                                            </div>
+                                                            <div class="teacher">
+                                                                Müəllim:
+                                                                <span>Əhməd Məmmədli</span>
+                                                            </div>
+                                                            <div class="date">
+                                                                Keçirilmə vaxtı:
+                                                                <span>09:00 - 10:00</span>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>                                                      
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>                                                      
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            Yoxdur
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="d-flex hull-height-spinner-opacity">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div> -->
 
                             
                             <!-- end row -->
@@ -398,43 +611,47 @@
                 </div>
                 <!-- End Page-content -->
 
-                <div class="modal fade bs-personal-add-modal" tabindex="-1" role="dialog" aria-labelledby="personAddModal" aria-hidden="true">
+                <div class="modal fade bs-lesson-add-modal" tabindex="-1" role="dialog" aria-labelledby="lessonAddModal" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-md">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title mt-0">Personalın əlavə edilməsi</h5>
+                                <h5 class="modal-title mt-0">Dərsin əlavəsi</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group form-group-custom mb-4">
-                                    <input type="text" class="form-control" id="username" required>
-                                    <label for="username">Adı</label> 
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">Fənn</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control">
+                                            <option>Select</option>
+                                            <option>Large select</option>
+                                            <option>Small select</option>
+                                        </select>
+                                    </div>
                                 </div>
-
-                                <div class="form-group form-group-custom mb-4">
-                                    <input type="text" class="form-control" id="lastname" required>
-                                    <label for="lastname">Soyadı</label>
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">Müəllim</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control">
+                                            <option>Select</option>
+                                            <option>Large select</option>
+                                            <option>Small select</option>
+                                        </select>
+                                    </div>
                                 </div>
-            
-                                <div class="form-group form-group-custom mb-4">
-                                    <input type="text" class="form-control" id="patronymic" required>
-                                    <label for="patronymic">Ata adı</label>
+                                <div class="form-group row">
+                                    <label for="start-time" class="col-md-4 col-form-label">Başlama saatı</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="time" id="start-time">
+                                    </div>
                                 </div>
-        
-                                <div class="form-group form-group-custom mb-4">
-                                    <input type="text" class="form-control" id="email" required>
-                                    <label for="email">Email ünvanı daxil edin</label> 
-                                </div>
-                    
-                                <div class="form-group form-group-custom mb-4">
-                                    <select class="form-control">
-                                        <option disabled selected>İstifadəçi rolunu seçin</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Müəllim</option>
-                                        <option value="3">Admin / Müəllim</option>
-                                    </select>
+                                <div class="form-group row">
+                                    <label for="end-time" class="col-md-4 col-form-label">Bitmə saatı</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="time" id="end-time">
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
