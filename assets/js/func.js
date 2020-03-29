@@ -9,8 +9,42 @@ const API_URL = "http://proedu-backend.site/v1/";
 
 function logout() {
     localStorage.clear();
-    location.href = "login.html";
+    location.href = "auth-login.html";
 }
+
+
+if(typeof localStorage.accessToken != 'undefined' && typeof localStorage.tenantInfo == 'undefined') {
+    logout();
+}
+
+var tenantInformation = JSON.parse(localStorage.tenantInfo);
+var personInfo = {};
+
+
+
+
+function getUserInformation() {
+
+    if(typeof localStorage.personInfo == "undefined") {
+
+        standartRequest(requestType.get,'profiles','',function(data) {
+
+            personInfo = data;
+            personInfo.lastname = personInfo.lastname==null?'':personInfo.lastname;
+            localStorage.personInfo = JSON.stringify(personInfo);
+            initUserInformation();
+
+        });
+    }
+    else {
+        personInfo = JSON.parse(localStorage.personInfo);
+        initUserInformation();
+    }
+
+
+}
+
+
 
 function standartRequest(type,link,form_data,success_process) {
 
@@ -22,11 +56,13 @@ function standartRequest(type,link,form_data,success_process) {
 
 
     var headers = {
-        "X-ADMIN-AUTH-PROTOKEN":systemToken
+        "X-AUTH-PROTOKEN":systemToken,
+        "X-TENANT-ID": tenantInformation.id
     };
     if(type=="post" || type=="put") {
         headers = {
-            "X-ADMIN-AUTH-PROTOKEN":systemToken,
+            "X-AUTH-PROTOKEN":systemToken,
+            "X-TENANT-ID": tenantInformation.id,
             "Content-Type": "application/json"
         };
     }
@@ -62,7 +98,7 @@ function standartRequest(type,link,form_data,success_process) {
         error: function(data) {
             var data = data['responseJSON'];
             if(typeof data['error'] != "undefined") {
-                $.notify(data['error']['message'], {});
+                alert(data['error']['message'], {});
             }
         }
     });
@@ -77,6 +113,20 @@ function ArrayToJson(form_data) {
     return data;
 }
 
+
+function modalEmpty(modalId,callBackFuncName) {
+
+    $("#"+modalId).find('[name]:disabled').removeAttr("disabled");
+    $("#"+modalId).find('[name]').each(function() {
+        $(this).val('');
+    });
+    if(typeof callBackFuncName != 'undefined') {
+        var fn = window[callBackFuncName];
+        if(typeof fn === 'function') {
+            fn();
+        }
+    }
+}
 
 
 /**

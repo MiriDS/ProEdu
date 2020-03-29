@@ -1,0 +1,380 @@
+<div class="row">
+    <div class="col-xl-2">
+        <div class="card">
+            <div class="card-header bg-transparent border-bottom">
+                <h5 class="header-title fcsb">
+                    Sİnİf nömrəsi
+                    <!--<button type="button" class="float-right btn btn-primary btn-sm">
+                        <i class="mdi mdi-plus-thick"></i>
+                    </button>-->
+                </h5>
+            </div>
+            <div class="table-responsive h400s">
+                <table class="table table-centered table-hover mb-0 table-tr-cursor" id="group_numbers_table">
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-2">
+        <div class="card">
+            <div class="card-header bg-transparent border-bottom">
+                <h5 class="header-title fcsb">
+                    Sİnİf hərfi
+                    <button type="button" id="create_group" class="float-right btn btn-primary btn-sm">
+                        <i class="mdi mdi-plus-thick"></i>
+                    </button>
+                </h5>
+            </div>
+            <div class="table-responsive h400s">
+                <table class="table table-centered table-hover mb-0 table-tr-cursor" id="groups_table">
+                    <tbody></tbody>
+                    <tfoot>
+                    <tr id="group_add_tr" style="display: none;">
+                        <td>
+                            <input class="form-control" type="text" id="group_name" placeholder="Hərf">
+                        </td>
+                        <td>
+                            <div class="btn-group float-right" role="group">
+                                <button onclick="saveGroup()" type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Yadda saxla">
+                                    <i class="mdi mdi mdi-content-save"></i>
+                                </button>
+                                <button onclick="$(this).closest('tr').hide();" type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="İmtina">
+                                    <i class="mdi mdi mdi-close-circle-outline"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-header bg-transparent border-bottom">
+                <h5 class="header-title fcsb">
+                    Şagİrd
+                    <button onclick="modalEmpty('studentAddModal'); checkAndOpenStudentModal();" type="button" class="float-right btn btn-primary btn-sm">
+                        <i class="mdi mdi-plus-thick"></i>
+                    </button>
+                </h5>
+            </div>
+            <div class="table-responsive h400s">
+                <table class="table table-centered mb-0" id="students_table">
+                    <tbody>
+                    <!--<div class="d-flex hull-height-spinner-opacity">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>-->
+                    <!--<tr>
+                        <th scope="row">
+                            1
+                        </th>
+                        <td>Akif</td>
+                        <td>Sultanov</td>
+                        <td>Həsən</td>
+                        <td>akif@sultanov.info</td>
+                        <td>
+                            <div class="btn-group float-right" role="group">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Düzəliş et">
+                                    <i class="mdi mdi-pencil"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sil">
+                                    <i class="mdi mdi-trash-can"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            2
+                        </th>
+                        <td>
+                            <input class="form-control" type="text" placeholder="Adı daxil edin">
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" placeholder="Soyadı daxil edin">
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" placeholder="Ata adını daxil edin">
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" placeholder="Email ünvanı daxil edin">
+                        </td>
+                        <td>
+                            <div class="btn-group float-right" role="group">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Yadda saxla">
+                                    <i class="mdi mdi mdi-content-save"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="İmtina">
+                                    <i class="mdi mdi mdi-close-circle-outline"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    var groupApiRoute = "group";
+    var studentApiRoute = "employees";
+
+    /***
+     * Group related script start
+     * **/
+    function getActiveGroupNumber() {
+        return $("#group_numbers_table tbody .selected").attr('group_number_id');
+    }
+    for(var n in group_numbers) {
+        $("#group_numbers_table tbody").append('<tr class="'+(n==1?"selected":"")+'" group_number_id="'+n+'" >\n' +
+            '                        <td>'+group_numbers[n]+'</td>\n' +
+            '                    </tr>');
+    }
+
+
+    $("#group_numbers_table tbody").on('click','tr',function() {
+        if($(this).hasClass('selected')) {
+            return;
+        }
+
+        $("#group_numbers_table tbody .selected").removeClass('selected');
+        $(this).addClass('selected');
+        getGroups();
+    });
+
+
+
+    function getGroups() {
+        var table = $("#groups_table");
+        var number = getActiveGroupNumber();
+        standartRequest(requestType.get,groupApiRoute+'?group='+number,'', function(data) {
+
+            table.find('tbody').html('');
+
+            for(var n in data) {
+
+                table.find('tbody').append('<tr row_id="'+data[n]['id']+'"><td>'+(_.escape(data[n]['name']))+'</td>'+
+                    '<td>'+
+                    '<div class="btn-group float-right" role="group">'+
+                    '<button type="button" class="btn btn-outline-secondary btn-sm delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sil">'+
+                    '<i class="mdi mdi-trash-can"></i>'+
+                    '</button>'+
+                    '</div>'+
+                    '</td></tr>');
+            }
+        });
+    }
+
+    getGroups();
+
+
+    function deleteGroup(row_id) {
+        standartRequest(requestType.delete,groupApiRoute+'/'+row_id,'', function(data) {
+            getGroups();
+        });
+    }
+
+    $("#groups_table").on("click",".delete",function() {
+        var row_id = $(this).closest('[row_id]').attr('row_id');
+
+        swal({
+            title: 'Silmək əminsinizmi?',
+            //text: 'Your will not be able to recover this imaginary file!',
+            icon: 'warning',
+            buttons: {
+                cancel: {
+                    text: 'Bağla',
+                    value: null,
+                    visible: true,
+                    className: "",
+                    closeModal: true
+                },
+                confirm: {
+                    text: 'Bəli!',
+                    value: true,
+                    visible: true,
+                    className: "bg-danger",
+                    closeModal: true
+                }
+            }
+        }).then(function(isConfirm) {
+            if (isConfirm) {
+                deleteGroup(row_id);
+            }
+        });
+    });
+
+
+
+    $("#create_group").click(function() {
+        $("#group_name").val('');
+        $("#groups_table #group_add_tr").show();
+    });
+
+
+    function saveGroup() {
+        var number = getActiveGroupNumber();
+        var name = $("#group_name").val();
+        if(name.trim()=='')
+            return;
+
+        var data_mas = [
+            { 'name':'name' ,'value':name },
+            { 'name':'number' ,'value': parseInt(number) },
+        ];
+        var data = ArrayToJson(data_mas);
+        var rType = requestType.post;
+        var url = groupApiRoute;
+        if( typeof rowId != "undefined" && parseInt(rowId)>0) {
+            rType = requestType.put;
+            url += "/"+rowId;
+        }
+        standartRequest(rType,url,data, function() {
+            $("#groups_table #group_add_tr").hide();
+            getGroups();
+        });
+
+    }
+
+
+
+    /***
+     * Student related script start
+     * **/
+
+    $("#groups_table tbody").on('click','tr',function() {
+
+        if($(this).hasClass('selected')) {
+            return;
+        }
+
+        $("#groups_table tbody .selected").removeClass('selected');
+        $(this).addClass('selected');
+        getStudents();
+    });
+    
+    function getStudents() {
+
+        var table = $("#students_table");
+        var group_id = $("#groups_table tbody .selected").attr('row_id');
+        standartRequest(requestType.get,studentApiRoute+'?group_id='+group_id,'', function(data) {
+
+            table.find('tbody').html('');
+
+            for(var n in data) {
+
+                table.find('tbody').append('<tr row_id="'+data[n]['id']+'"><td>'+(parseInt(n)+1)+'</td><td label-name="">'+_.escape(data[n]['name'])+'</td><td label-lastname="">'+_.escape(data[n]['lastName'])+'</td><td label-patronymic="">'+_.escape(data[n]['patronymic'])+'</td><td label-email="">'+_.escape(data[n]['email'])+'</td><td><div class="btn-group" role="group">\n' +
+                    '                            <button type="button" class="btn btn-outline-secondary btn-sm edit" data-toggle="tooltip" data-placement="top" title="" data-original-title="Düzəliş et">\n' +
+                    '                                <i class="mdi mdi-pencil"></i>\n' +
+                    '                            </button>\n' +
+                    '                            <button type="button" class="btn btn-outline-secondary btn-sm delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sil">\n' +
+                    '                                <i class="mdi mdi-trash-can"></i>\n' +
+                    '                            </button>\n' +
+                    '                        </div></td></tr>');
+
+            }
+        });
+    }
+
+
+    function saveStudent() {
+
+        var saveModal = $("#studentAddModal");
+        var data_mas = saveModal.find('form').serializeArray();
+        var rowId = saveModal.find('[name=row_id]').val();
+
+        for(var b in data_mas ) {
+            if(data_mas[b].name=="groupId" || data_mas[b].name=="role") {
+                data_mas[b].value=parseInt(data_mas[b].value);
+            }
+        }
+
+        var data = ArrayToJson(data_mas);
+        var rType = requestType.post;
+        var url = studentApiRoute;
+        if( typeof rowId != "undefined" && parseInt(rowId)>0) {
+            rType = requestType.put;
+            url += "/"+rowId;
+        }
+        standartRequest(rType,url,data, function() {
+            getStudents();
+            modalEmpty("studentAddModal");
+            saveModal.modal('hide');
+        });
+    }
+
+
+    function deleteStudent(row_id) {
+        standartRequest(requestType.delete,studentApiRoute+'/delete/'+row_id,'', function(data) {
+            getStudents();
+        });
+    }
+
+    $("#students_table").on("click",".delete",function() {
+        var row_id = $(this).closest('[row_id]').attr('row_id');
+
+        swal({
+            title: 'Silmək əminsinizmi?',
+            //text: 'Your will not be able to recover this imaginary file!',
+            icon: 'warning',
+            buttons: {
+                cancel: {
+                    text: 'Bağla',
+                    value: null,
+                    visible: true,
+                    className: "",
+                    closeModal: true
+                },
+                confirm: {
+                    text: 'Bəli!',
+                    value: true,
+                    visible: true,
+                    className: "bg-danger",
+                    closeModal: true
+                }
+            }
+        }).then(function(isConfirm) {
+            if (isConfirm) {
+                deleteStudent(row_id);
+            }
+        });
+    });
+
+
+    var addModal = $('#studentAddModal');
+    $("#students_table").on("click",".edit",function() {
+        var tr = $(this).closest('[row_id]');
+        var row_id = tr.attr('row_id');
+        var name = tr.find('[label-name]').text();
+        var lastname = tr.find('[label-lastname]').text();
+        var patronymic = tr.find('[label-patronymic]').text();
+        var email = tr.find('[label-email]').text();
+        var role = 4;//tr.find('[label-role]').attr('label-role');
+        var group_id = $("#groups_table tbody .selected").attr('row_id');
+
+        addModal.find('[name=row_id]').val(row_id);
+        addModal.find('[name=name]').val(name);
+        addModal.find('[name=lastname]').val(lastname);
+        addModal.find('[name=patronymic]').val(patronymic);
+        addModal.find('[name=email]').val(email);
+        addModal.find('[name=role]').val(role);
+        addModal.find('[name=groupId]').val(group_id);
+        addModal.modal('show');
+    });
+
+    function checkAndOpenStudentModal() {
+        var row_id = $("#groups_table tbody .selected").attr('row_id');
+        if(row_id>0) {
+            $("#studentAddModal").find('[name=groupId]').val(row_id);
+            $("#studentAddModal").find('[name=role]').val(4);
+            $("#studentAddModal").modal('show');
+        }
+    }
+</script>

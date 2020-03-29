@@ -1,0 +1,140 @@
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="float-right ml-2">
+                <a href="#" class="waves-effect waves-light" onclick="modalEmpty('personAddModal');" data-toggle="modal" data-target="#personAddModal">
+                    <i class="mdi mdi-plus-thick"></i>
+                    Müəllim əlavə et
+                </a>
+            </div>
+            <h5 class="header-title mb-4">Personal.</h5>
+            <div class="table-responsive">
+                <table class="table table-centered table-hover mb-0" id="person_table">
+                    <thead>
+                    <tr>
+                        <th scope="col">№</th>
+                        <th scope="col">Adı</th>
+                        <th scope="col">Soyadı</th>
+                        <th scope="col">Ata adı</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col" width="100">Əməliyyat</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    var apiRoute = "employees";
+    getFunctionName = "getPersons";
+
+    var addModal = $("#personAddModal");
+    function getPersons() {
+        var table = $("#person_table");
+        standartRequest(requestType.get,apiRoute,'', function(data) {
+
+            table.find('tbody').html('');
+
+            for(var n in data) {
+
+                table.find('tbody').append('<tr row_id="'+data[n]['id']+'"><td>'+(parseInt(n)+1)+'</td><td label-name="">'+_.escape(data[n]['name'])+'</td><td label-lastname="">'+_.escape(data[n]['lastName'])+'</td><td label-patronymic="">'+_.escape(data[n]['patronymic'])+'</td><td label-email="">'+_.escape(data[n]['email'])+'</td><td label-role="'+data[n]['role']+'">'+getRoleName(data[n]['role'])+'</td><td><div class="btn-group" role="group">\n' +
+                    '                            <button type="button" class="btn btn-outline-secondary btn-sm edit" data-toggle="tooltip" data-placement="top" title="" data-original-title="Düzəliş et">\n' +
+                    '                                <i class="mdi mdi-pencil"></i>\n' +
+                    '                            </button>\n' +
+                    '                            <button type="button" class="btn btn-outline-secondary btn-sm delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sil">\n' +
+                    '                                <i class="mdi mdi-trash-can"></i>\n' +
+                    '                            </button>\n' +
+                    '                        </div></td></tr>');
+            }
+        });
+    }
+
+    getPersons();
+
+
+
+    function deletePerson(row_id) {
+        standartRequest(requestType.delete,apiRoute+'/delete/'+row_id,'', function(data) {
+            getPersons();
+        });
+    }
+
+    $("#person_table").on("click",".delete",function() {
+        var row_id = $(this).closest('[row_id]').attr('row_id');
+
+        swal({
+            title: 'Silmək əminsinizmi?',
+            //text: 'Your will not be able to recover this imaginary file!',
+            icon: 'warning',
+            buttons: {
+                cancel: {
+                    text: 'Bağla',
+                    value: null,
+                    visible: true,
+                    className: "",
+                    closeModal: true
+                },
+                confirm: {
+                    text: 'Bəli!',
+                    value: true,
+                    visible: true,
+                    className: "bg-danger",
+                    closeModal: true
+                }
+            }
+        }).then(function(isConfirm) {
+            if (isConfirm) {
+                deletePerson(row_id);
+            }
+        });
+    });
+
+    $("#person_table").on("click",".edit",function() {
+        var tr = $(this).closest('[row_id]');
+        var row_id = tr.attr('row_id');
+        var name = tr.find('[label-name]').text();
+        var lastname = tr.find('[label-lastname]').text();
+        var patronymic = tr.find('[label-patronymic]').text();
+        var email = tr.find('[label-email]').text();
+        var role = tr.find('[label-role]').attr('label-role');
+
+        addModal.find('[name=row_id]').val(row_id);
+        addModal.find('[name=name]').val(name);
+        addModal.find('[name=lastname]').val(lastname);
+        addModal.find('[name=patronymic]').val(patronymic);
+        addModal.find('[name=email]').val(email);
+        addModal.find('[name=role]').val(role);
+        addModal.modal('show');
+    });
+
+    function savePerson(modalId) {
+
+        var saveModal = $("#personAddModal");
+        var data_mas = saveModal.find('form').serializeArray();
+        var rowId = saveModal.find('[name=row_id]').val();
+
+        for(var b in data_mas ) {
+            if(data_mas[b].name=="role") {
+                data_mas[b].value=parseInt(data_mas[b].value);
+            }
+        }
+
+        var data = ArrayToJson(data_mas);
+        var rType = requestType.post;
+        var url = apiRoute;
+        if( typeof rowId != "undefined" && parseInt(rowId)>0) {
+            rType = requestType.put;
+            url += "/"+rowId;
+        }
+        standartRequest(rType,url,data, function() {
+            getPersons();
+            modalEmpty("personAddModal");
+            saveModal.modal('hide');
+        });
+    }
+
+</script>

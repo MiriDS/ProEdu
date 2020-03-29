@@ -97,7 +97,8 @@
                             data = data['data'];
                         }
                         localStorage.setItem('accessToken',data['accessToken']);
-                        //location.href="index.html";
+                        localStorage.setItem('tenantInfo',JSON.stringify(data['tenants'][0]));
+                        location.href="index.html";
                     },
                     statusCode: {
                         401: function (responseObject, textStatus, jqXHR) {
