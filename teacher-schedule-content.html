@@ -133,7 +133,7 @@
 
         table.find('tbody').html('');
         for(var n in data) {
-            table.find('tbody').append('<tr row_id="'+data[n].id+'"><th scope="row">'+(parseInt(n)+1)+'</th><td>'+(data[n].startsAt)+'</td><td>'+(data[n].endsAt)+'</td><td>'+_.escape(data[n].name)+'</td><td>'+(_.escape(data[n].groupNumber)+' '+_.escape(data[n].groupName))+'</td><td><button type="button" class="btn btn-outline-secondary btn-sm join_meeting" data-toggle="tooltip" data-placement="top" title="Online dərsə keçid al"><i class="mdi mdi-camera"></i></button></td></tr>');
+            table.find('tbody').append('<tr row_id="'+data[n].id+'"><th scope="row">'+(parseInt(n)+1)+'</th><td>'+(data[n].startsAt)+'</td><td>'+(data[n].endsAt)+'</td><td>'+_.escape(data[n].name)+'</td><td>'+(_.escape(data[n].groupNumber)+' '+_.escape(data[n].groupName))+'</td><td><button type="button" class="btn btn-outline-secondary btn-sm join_meeting" data-toggle="tooltip" data-placement="top" title="Online dərsə başla"><i class="mdi mdi-camera"></i></button></td></tr>');
         }
     }
 
