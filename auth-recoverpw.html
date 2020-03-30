@@ -10,6 +10,10 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
+        <!-- alertifyjs Css -->
+        <link href="assets/libs/alertifyjs/build/css/alertify.min.css" rel="stylesheet" type="text/css" />
+        <!-- alertifyjs default themes  Css -->
+        <link href="assets/libs/alertifyjs/build/css/themes/default.min.css" rel="stylesheet" type="text/css" />
         <!-- Bootstrap Css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
@@ -20,7 +24,6 @@
     </head>
 
     <body class="bg-primary bg-pattern">
-
         <div class="account-pages my-5 pt-sm-5">
             <div class="container">
                 <div class="row">
@@ -34,28 +37,24 @@
                 <!-- end row -->
 
                 <div class="row justify-content-center">
-                    <div class="col-xl-5 col-sm-8"> 
+                    <div class="col-xl-5 col-sm-8">
                         <div class="card">
                             <div class="card-body p-4">
                                 <div class="p-2">
-                                    <form class="form-horizontal" action="index.html">
+                                    <h5 class="mb-5 text-center">Şifrənin bərpası</h5>
+                                    <form class="form-horizontal" action="">
 
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="user-thumb text-center">
-                                                    <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-lg img-thumbnail mx-auto d-block" alt="thumbnail">
+                                                <div>
+                                                    <h5 class="font-size-14">E-mail ünvan</h5>
+                                                    <input type="text" class="form-control" name="email" required placeholder="E-mail ünvanınızı daxil edin">
                                                 </div>
-
-                                                <div class="form-group form-group-custom mt-5">
-                                                    <input type="password" class="form-control" id="userpassword" required>
-                                                    <label for="userpassword">Şifrə</label>
-                                                </div>
+                                                
                                                 <div class="mt-4">
-                                                    <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Unlock</button>
+                                                    <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Email göndər</button>
                                                 </div>
-                                                <div class="mt-4 text-center">
-                                                    <p class="mb-0">Siz deyilsiniz ? <a href="auth-login.html" class="font-weight-medium text-primary"> Daxil olma </a> pəncərəsinə keç. </p>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </form>
