@@ -26,9 +26,6 @@ else
 
 var personInfo = {};
 
-
-
-
 function getUserInformation() {
 
     if(typeof localStorage.personInfo == "undefined") {
@@ -37,7 +34,7 @@ function getUserInformation() {
 
             personInfo = data;
             personInfo.lastname = personInfo.lastname==null?'':personInfo.lastname;
-            localStorage.personInfo = JSON.stringify(personInfo);
+            //localStorage.personInfo = JSON.stringify(personInfo);
             initUserInformation();
 
         });
