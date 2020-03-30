@@ -99,7 +99,10 @@ function standartRequest(type,link,form_data,success_process) {
         error: function(data) {
             var data = data['responseJSON'];
             if(typeof data['error'] != "undefined") {
-                alert(data['error']['message'], {});
+                alertify.alert().setHeader('Bildiriş!').setting({
+                    'label':'Bağla',
+                    'message': data['error']['message'],
+                  }).show();
             }
         }
     });

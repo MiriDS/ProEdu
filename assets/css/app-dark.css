@@ -30,8 +30,9 @@ File: Main Css (Dark) File
 @import url("https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap");
 /* 1. General */
 .weekly {
+  min-width: 1200px;
   padding: 0;
-  margin: 0 0 24px 0;
+  margin: 0 0 10px 0;
   list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -116,6 +117,10 @@ File: Main Css (Dark) File
           justify-content: space-between;
   margin-bottom: 0; }
 
+.weekly-table {
+  min-width: 1200px;
+  padding-bottom: 12px; }
+
 .table-tr-cursor > tbody > tr {
   cursor: pointer; }
 
@@ -129,8 +134,7 @@ File: Main Css (Dark) File
 
 .h400s {
   height: 400px;
-  overflow-y: scroll;
-  overflow-x: hidden; }
+  overflow-y: scroll; }
 
 .h400s::-webkit-scrollbar {
   width: 2px; }
@@ -139,7 +143,8 @@ File: Main Css (Dark) File
   background-color: #ddd; }
 
 .h400s::-webkit-scrollbar-thumb {
-  background-color: #2FA97C; }
+  background-color: #2FA97C;
+  height: 2px; }
 
 .hull-height-spinner-opacity {
   -webkit-box-pack: center;
@@ -250,6 +255,30 @@ File: Main Css (Dark) File
 .border-color th {
   border-color: #a9a6a6 !important;
   position: relative; }
+
+@media (max-width: 991.98px) {
+  .msk-blocks {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
+    .msk-blocks li {
+      width: auto; }
+      .msk-blocks li .card-body {
+        padding: 12px; }
+        .msk-blocks li .card-body span {
+          font-size: 17px; }
+        .msk-blocks li .card-body i {
+          display: none; }
+        .msk-blocks li .card-body .name {
+          font-size: 12px; }
+    .msk-blocks li:last-child {
+      margin-right: 0; }
+  .weekly-table table {
+    margin-left: 36px; }
+  .horizontal-responsive {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    margin-bottom: 14px; } }
 
 /* 2. Topbar */
 #page-topbar {
@@ -434,10 +463,6 @@ body[data-topbar="colored"] .dropdown.show .header-item {
 
 body[data-topbar="colored"] .noti-icon i {
   color: #e9ecef; }
-
-@media (max-width: 380px) {
-  .navbar-brand-box {
-    display: none; } }
 
 body[data-layout="horizontal"] .navbar-brand-box {
   width: auto; }
