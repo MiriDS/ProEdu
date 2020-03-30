@@ -223,8 +223,13 @@
     });
 
     standartRequest(requestType.get,'employees','', function(data) {
+        console.log(data);
         addModal.find('[name=teacher]').html('');
         for(var n in data) {
+
+            if(data[n].role==1)
+                continue;
+
             addModal.find('[name=teacher]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['lastName'])+' '+_.escape(data[n]['name'])+'</option>');
         }
     });

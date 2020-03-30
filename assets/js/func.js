@@ -5,7 +5,7 @@ const requestType = {
     put:"put",
     delete:"delete"
 };
-const API_URL = "http://proedu-backend.site/v1/";
+const API_URL = "https://educore.pronet.az/v1/";
 
 function logout() {
     localStorage.clear();

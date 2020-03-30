@@ -160,6 +160,8 @@
 
             table.find('tbody').html('');
 
+            $("#students_table").find('tbody').html('');
+
             for(var n in data) {
 
                 table.find('tbody').append('<tr row_id="'+data[n]['id']+'"><td>'+(_.escape(data[n]['name']))+'</td>'+
