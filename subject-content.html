@@ -57,7 +57,7 @@
 
 
     function deleteSubject(row_id) {
-        standartRequest(requestType.delete,apiRoute+'/delete/'+row_id,'', function(data) {
+        standartRequest(requestType.delete,apiRoute+'/'+row_id,'', function(data) {
             getSubjects();
         });
     }
