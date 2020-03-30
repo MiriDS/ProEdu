@@ -10,6 +10,10 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
+        <!-- alertifyjs Css -->
+        <link href="assets/libs/alertifyjs/build/css/alertify.min.css" rel="stylesheet" type="text/css" />
+        <!-- alertifyjs default themes  Css -->
+        <link href="assets/libs/alertifyjs/build/css/themes/default.min.css" rel="stylesheet" type="text/css" />
         <!-- Bootstrap Css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
@@ -74,6 +78,7 @@
         <script src="assets/libs/simplebar/simplebar.min.js"></script>
         <script src="assets/libs/node-waves/waves.min.js"></script>
         <script src="https://unicons.iconscout.com/release/v2.0.1/script/monochrome/bundle.js"></script>
+        <script src="assets/libs/alertifyjs/build/alertify.min.js"></script>
         <script src="assets/js/app.js"></script>
         <script src="assets/js/func.js"></script>
         <script>
@@ -102,7 +107,7 @@
                     },
                     statusCode: {
                         401: function (responseObject, textStatus, jqXHR) {
-                           alert('Email və ya şifrə yalnışdır');
+                            alertify.error('Email və ya şifrə yalnışdır');
                            /// $.notify('Email və ya şifrə yalnışdır', {});
                         },
                     }
