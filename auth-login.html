@@ -107,8 +107,10 @@
                     },
                     statusCode: {
                         401: function (responseObject, textStatus, jqXHR) {
-                            alertify.error('Email və ya şifrə yalnışdır');
-                           /// $.notify('Email və ya şifrə yalnışdır', {});
+                            alertify.alert().setHeader('Bildiriş!').setting({
+                                'label':'Bağla',
+                                'message': 'Email və ya şifrə yalnışdır',
+                            }).show();                           
                         },
                     }
                 });
