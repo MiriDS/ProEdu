@@ -43,8 +43,6 @@ function getUserInformation() {
         personInfo = JSON.parse(localStorage.personInfo);
         initUserInformation();
     }
-
-
 }
 
 
