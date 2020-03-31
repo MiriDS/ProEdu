@@ -172,7 +172,10 @@
         });
     });
 
-    $("li[day]").first().click();
+    var d = new Date();
+    var n = d.getDay();//console.log(n)
+    $("li[day]:eq("+(parseInt(n)-1)+")").first().click();
+
     $("#activeModuleName").text("Dərs cədvəli");
 
 
