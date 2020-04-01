@@ -21,6 +21,8 @@
         <!-- App Css-->
         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
 
+
+
     </head>
 
     <body class="bg-primary bg-pattern">
@@ -42,8 +44,7 @@
                             <div class="card-body p-4">
                                 <div class="p-2">
                                     <h5 class="mb-5 text-center">Qeydiyyat</h5>
-                                    <form class="form-horizontal" action="">
-
+                                    <form id="registerForm"  onsubmit="return false;"  class="form-horizontal">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="mb-4">
@@ -55,39 +56,19 @@
                                                 <div class="mb-4">
                                                     <div>
                                                         <h5 class="font-size-14">Soyad</h5>
-                                                        <input type="text" class="form-control" name="surname" required placeholder="Soyadınızı daxil edin">
+                                                        <input type="text" class="form-control" name="lastname" placeholder="Soyadınızı daxil edin">
                                                     </div>
                                                 </div>
                                                 <div class="mb-4">
                                                     <div>
                                                         <h5 class="font-size-14">Ata adı</h5>
-                                                        <input type="text" class="form-control" name="patronymic" required placeholder="Ata adını daxil edin">
+                                                        <input type="text" class="form-control" name="patronymic" placeholder="Ata adını daxil edin">
                                                     </div>
                                                 </div>
                                                 <div class="mb-4">
                                                     <div>
                                                         <h5 class="font-size-14">Təhsil müəssisəsi</h5>
-                                                        <select class="form-control" name="education-center">
-                                                            <option selected disabled>Təhsil müəssisəsini seçin</option>
-                                                            <option value="1">A.S.Makarenko adına Humanitar fənlər təmayüllü ümumtəhsil internat məktəbi</option>
-                                                            <option value="2">Gindes adına Uşaq sanatoriyası nəzdindəki orta məktəb</option>
-                                                            <option value="3">Kor və zəif görənlər üçün respublika orta internat məktəbi</option>
-                                                            <option value="4">“Odlar Yurdu” Universiteti nəzdində orta ümumtəhsil innovasiyalar məktəb</option>
-                                                            <option value="5">Bakı Kompüter Kolleci nəzdində orta məktəb</option>
-                                                            <option value="6">Respublika olimpiya ehtiyatları məktəbi</option>
-                                                            <option value="7">Bakı Xoreoqrafiya məktəbi</option>
-                                                            <option value="8">Bakı Xoreoqrafiya məktəbi</option>
-                                                            <option value="9"> Xabatoarner yəhudi orta məktəbi</option>
-                                                            <option value="10"> V.Zeynalov adına Gərməçataq kənd orta məktəbi</option>
-                                                            <option value="11"> 1 saylı orta internat məktəbi; /option>
-                                                            <option value="12"> 1 saylı orta məktəb</option>
-                                                            <option value="13"> 2 saylı H.Mahmudbəyov adına texniki-humanitar elmlər liseyi</option>
-                                                            <option value="14"> 3 saylı orta məktəb</option>
-                                                            <option value="15"> 4 saylı orta məktəb</option>
-                                                            <option value="16"> 5 saylı orta məktəb</option>
-                                                            <option value="17"> 6 saylı İntellekt liseyi</option>
-                                                            <option value="18"> 6 saylı axşam-qiyabi orta məktəbi</option>
-                                                        </select>
+                                                        <input class="form-control" name="company" required placeholder="Təhsil müəssisəsi daxil edin">
                                                     </div>
                                                 </div>
                                                 <div class="mb-4">
@@ -99,13 +80,13 @@
                                                 <div class="mb-4">
                                                     <div>
                                                         <h5 class="font-size-14">Şifrə</h5>
-                                                        <input type="text" class="form-control" name="password" required placeholder="Şifrə daxil edin">
+                                                        <input type="password" class="form-control" name="password" required placeholder="Şifrə daxil edin">
                                                     </div>
                                                 </div>
                                                 <div class="mb-4">
                                                     <div>
                                                         <h5 class="font-size-14">Şifrənin təkrarı</h5>
-                                                        <input type="text" class="form-control" name="repassword" required placeholder="Şifrənin təkrarını daxil edin">
+                                                        <input type="password" class="form-control" name="passwordRepeat" required placeholder="Şifrənin təkrarını daxil edin">
                                                     </div>
                                                 </div>
                                                 <div class="mt-4">
@@ -135,9 +116,43 @@
         <script src="assets/libs/node-waves/waves.min.js"></script>
 
         <script src="https://unicons.iconscout.com/release/v2.0.1/script/monochrome/bundle.js"></script>
-
-
         <script src="assets/js/app.js"></script>
+        <script src="assets/libs/alertifyjs/build/alertify.min.js"></script>
+        <script src="assets/js/func.js"></script>
 
+        <script>
+            $("#registerForm").on('submit',function() {
+                var form_data = $("#registerForm").serializeArray();
+                data = ArrayToJson(form_data)
+
+                $.ajax({
+                    url: API_URL+'register',
+                    type: 'post',
+                    data: data ,
+                    headers: {
+                        // Header_Name_One: 'Header Value One',   //If your header name has spaces or any other char not appropriate
+                        //"Header Name Two": 'Header Value Two'  //for object property name, use quoted notation shown in second
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if(typeof data['data'] != "undefined") {
+                            data = data['data'];
+                        }
+                        localStorage.setItem('accessToken',data['accessToken']);
+                        localStorage.setItem('tenantInfo',JSON.stringify(data['tenants']));
+                        location.href="index.html";
+                    },
+                    statusCode: {
+                        409: function (responseObject, textStatus, jqXHR) {
+                            alertify.alert().setHeader('Bildiriş!').setting({
+                                'label':'Bağla',
+                                'message': 'This email is already registered',//responseObject.message,
+                            }).show();
+                        },
+                    }
+                });
+
+            });
+        </script>
     </body>
 </html>
