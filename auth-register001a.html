@@ -139,7 +139,7 @@
                             data = data['data'];
                         }
                         localStorage.setItem('accessToken',data['accessToken']);
-                        localStorage.setItem('tenantInfo',JSON.stringify(data['tenants']));
+                        localStorage.setItem('tenantInfo',JSON.stringify(data['tenant']));
                         location.href="index.html";
                     },
                     statusCode: {
