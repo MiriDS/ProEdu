@@ -98,11 +98,19 @@
                                     </a>
                                 </li>
 
+                                <li class="nav-item" role-scope="teacher">
+                                    <a class="nav-link" menu-item href="#schedule">
+                                        Cədvəl
+                                    </a>
+                                </li>
+
                                 <li class="nav-item"  role-scope="student">
                                     <a class="nav-link" menu-item href="#student-schedule">
                                         Dərs cədvəli
                                     </a>
                                 </li>
+
+
 
                                 <li class="nav-item dropdown" role-scope="admin">
                                     <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-uielement" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -118,6 +126,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                </li>
+                                <li class="nav-item"  role-scope="admin">
+                                    <a class="nav-link" menu-item href="#lesson-history">
+                                        Dərs tarixçəsi
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -378,6 +391,39 @@
         </div><!-- /.modal -->
 
 
+        <div id="participantList" class="modal fade bs-personal-add-modal" tabindex="-1" role="dialog" aria-labelledby="subjectAddModal" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0">İştrakçılar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+
+                    <table class="table table-centered table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Şagird</th>
+                                <th>Qoşulma tarixi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <div class="modal-footer">
+                        <div class="mt-4">
+                            <button class="btn btn-secondary waves-effect waves-light" data-dismiss="modal"  type="submit">Bağla</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+
         <div id="subjectAddModal" class="modal fade bs-personal-add-modal" tabindex="-1" role="dialog" aria-labelledby="subjectAddModal" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog modal-dialog-centered modal-md">
                 <div class="modal-content">
@@ -497,6 +543,7 @@
         }
         else if(personInfo.role==2) {
             $("[role-scope='admin'],[role-scope='student']").remove();
+            $("[role-scope='teacher']").show();
             //location.hash = "teacher-schedule";
             //return;
         }
@@ -538,8 +585,9 @@
 
         if($('[menu-item][href="#'+module_name+'"]').length>0) {
 
+            $(".msk-blocks li.selected").removeClass('selected');
             if($(".msk-blocks li[for='"+module_name+"']").length>0) {
-                $(".msk-blocks li.selected").removeClass('selected');
+
                 $(".msk-blocks li[for='"+module_name+"']").addClass('selected');
             }
 
