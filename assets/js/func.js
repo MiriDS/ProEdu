@@ -5,7 +5,8 @@ const requestType = {
     put:"put",
     delete:"delete"
 };
-const API_URL = "https://core.proedu.az/v1/";
+//const API_URL = "https://core.proedu.az/v1/";
+const API_URL = "http://proedu-backend.site/v1/";
 
 function logout() {
     localStorage.clear();

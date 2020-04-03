@@ -49,7 +49,7 @@
                                                 <div class="mb-4">
                                                     <div>
                                                         <h5 class="font-size-14">İstifadəçi adı</h5>
-                                                        <input type="text" class="form-control" id="email" name="email" required placeholder="İstifadəçi adını daxil edin">
+                                                        <input type="email" class="form-control" id="email" name="email" required placeholder="İstifadəçi adını daxil edin">
                                                     </div>
                                                 </div>
                                                 <div class="mb-4">
@@ -102,7 +102,15 @@
 
             $("#loginForm").on('submit',function() {
                 var form_data = $("#loginForm").serializeArray();
-                data = ArrayToJson(form_data)
+                data = ArrayToJson(form_data);
+                var password = $("#loginForm").find('[name=password]').val();
+                if(password.length<6) {
+                    alertify.alert().setHeader('Bildiriş!').setting({
+                        'label':'Bağla',
+                        'message': 'Şifrə 6 simvoldan az ola bilməz',
+                    }).show();
+                    return;
+                }
 
                 $.ajax({
                     url: API_URL+'login',

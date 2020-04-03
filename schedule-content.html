@@ -28,7 +28,7 @@
 
 <div class="row text-center">
     <div class="col-xl-12">
-        <h4 class="mt-4 mb-4"><b id="activeGroupName"></b> sinifinin dərs cədvəli</h4>
+        <h4 class="mt-4 mb-4">Dərs cədvəli: <b id="activeGroupName"></b></h4>
     </div>
 </div>
 
@@ -223,20 +223,26 @@
     });
 
 
+    addModal.find('.teacherText').empty();
     if(personInfo.role == 2) {
-
+        var teacherName = (_.escape(personInfo['lastname'])+' '+_.escape(personInfo['name'])+' '+_.escape(personInfo['patronymic']));
+        addModal.find('.teacherText').text(teacherName);
+        addModal.find('.teacherSelect').hide();
         addModal.find('[name=teacher]').html('');
-        addModal.find('[name=teacher]').append('<option value="'+personInfo['id']+'">'+_.escape(personInfo['lastName'])+' '+_.escape(personInfo['name'])+'</option>');
+        addModal.find('[name=teacher]').append('<option selected value="'+personInfo['id']+'">'+teacherName+'</option>');
     }
     else {
         standartRequest(requestType.get,'employees','', function(data) {
+
+            addModal.find('.teacherSelect').show();
+
             addModal.find('[name=teacher]').html('');
             for(var n in data) {
 
                 if(data[n].role==1)
                     continue;
 
-                addModal.find('[name=teacher]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['lastName'])+' '+_.escape(data[n]['name'])+'</option>');
+                addModal.find('[name=teacher]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['lastName'])+' '+_.escape(data[n]['name'])+' '+_.escape(data[n]['patronymic'])+'</option>');
             }
         });
     }
