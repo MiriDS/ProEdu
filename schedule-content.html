@@ -106,6 +106,9 @@
     var lessonList = [];
     var groupCache = {};
 
+    addModal.find("[name='lessonStartsAt']").mask('00:00');
+    addModal.find("[name='lessonEndsAt']").mask('00:00');
+
     for(var n in group_numbers) {
         $("[name=group_number]").append('<option value="'+n+'">'+group_numbers[n]+'</option>');
     }

@@ -318,13 +318,13 @@
                             <div class="form-group row">
                                 <label for="start-time" class="col-md-4 col-form-label">Başlama saatı</label>
                                 <div class="col-md-8">
-                                    <input name="lessonStartsAt" class="form-control" type="time" id="start-time">
+                                    <input name="lessonStartsAt" class="form-control" id="start-time">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="end-time" class="col-md-4 col-form-label">Bitmə saatı</label>
                                 <div class="col-md-8">
-                                    <input name="lessonEndsAt"  class="form-control" type="time" id="end-time">
+                                    <input name="lessonEndsAt"  class="form-control"  id="end-time">
                                 </div>
                             </div>
                         </div>
@@ -371,16 +371,17 @@
 
                             <div class="form-group form-group-custom mb-4">
                                 <input type="text" class="form-control" name="email" id="email" required>
-                                <label for="email">Email ünvanı daxil edin</label>
+                                <label for="email">Email ünvanı</label>
                             </div>
 
                             <div class="form-group form-group-custom mb-4">
-                                <select class="form-control" name="role" >
-                                    <option disabled selected>İstifadəçi rolunu seçin</option>
+                                <select class="form-control" name="role" id="role" required>
+                                    <!--<option disabled selected>İstifadəçi rolunu seçin</option>-->
                                     <option value="1">Admin</option>
                                     <option value="2">Müəllim</option>
                                     <option value="3">Admin / Müəllim</option>
                                 </select>
+                                <label style="display: none" for="role">Rol</label>
                             </div>
                         </div>
                     </form>
@@ -556,6 +557,7 @@
 <script src="assets/js/underscore.js?v=1.1"></script>
 <script src="assets/js/moment.js?v=1.1"></script>
 <script src="assets/js/sweetalert.min.js"></script>
+<script src="assets/js/jquery.mask.js"></script>
 <script>
 
     window.addEventListener("hashchange", hashChange, false);
@@ -671,6 +673,7 @@
         '                        <div class="spinner-border text-primary" role="status">\n' +
         '                            <span class="sr-only">Loading...</span>\n' +
         '                        </div>';
+
 </script>
 
 </body>

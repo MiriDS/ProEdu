@@ -121,11 +121,19 @@
         var data_mas = saveModal.find('form').serializeArray();
         var rowId = saveModal.find('[name=row_id]').val();
 
+
+        if(!isValidForm(saveModal.find('form'))) {
+            return;
+        }
+
+
         for(var b in data_mas ) {
             if(data_mas[b].name=="role") {
-                data_mas[b].value=parseInt(data_mas[b].value);
+                data_mas[b].value = parseInt(data_mas[b].value);
             }
         }
+
+
 
         var data = ArrayToJson(data_mas);
         var rType = requestType.post;

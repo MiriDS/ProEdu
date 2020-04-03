@@ -315,3 +315,31 @@ const getCurrentWeekDays = () => {
 
     return days;
 }
+
+
+
+function isValidForm(form) {
+    //alert(value);
+
+    var validForm = true;
+
+    form.find('[name]').each(function() {
+
+        if(typeof $(this).attr('required') != 'undefined' && ($(this).val() == '' || $(this).val() == null)) {
+
+            displayError(form.find('[for="'+$(this).attr('id')+'"]').text());
+            validForm = false;
+            return false;
+        }
+
+    });
+    return validForm;
+}
+
+function displayError(name) {
+
+    alertify.alert().setHeader('Bildiriş!').setting({
+        'label':'Bağla',
+        'message': name+' vacib xanadı',
+    }).show();
+}
