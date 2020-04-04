@@ -43,9 +43,14 @@
 
             table.find('tbody').html('');
 
+            var count = 0;
             for(var n in data) {
 
-                table.find('tbody').append('<tr row_id="'+data[n]['id']+'"><td>'+(parseInt(n)+1)+'</td><td label-name="">'+_.escape(data[n]['name'])+'</td><td label-lastname="">'+_.escape(data[n]['lastName'])+'</td><td label-patronymic="">'+_.escape(data[n]['patronymic'])+'</td><td label-email="">'+_.escape(data[n]['email'])+'</td><td label-role="'+data[n]['role']+'">'+getRoleName(data[n]['role'])+'</td><td><div class="btn-group" role="group">\n' +
+                if(data[n].isAdmin)
+                    continue;
+
+                count++;
+                table.find('tbody').append('<tr row_id="'+data[n]['id']+'"><td>'+(count)+'</td><td label-name="">'+_.escape(data[n]['name'])+'</td><td label-lastname="">'+_.escape(data[n]['lastName'])+'</td><td label-patronymic="">'+_.escape(data[n]['patronymic'])+'</td><td label-email="">'+_.escape(data[n]['email'])+'</td><td label-role="'+data[n]['role']+'">'+getRoleName(data[n]['role'])+'</td><td><div class="btn-group" role="group">\n' +
                     '                            <button type="button" class="btn btn-outline-secondary btn-sm edit" data-toggle="tooltip" data-placement="top" title="" data-original-title="Düzəliş et">\n' +
                     '                                <i class="mdi mdi-pencil"></i>\n' +
                     '                            </button>\n' +
@@ -105,7 +110,11 @@
         var patronymic = tr.find('[label-patronymic]').text();
         var email = tr.find('[label-email]').text();
         var role = tr.find('[label-role]').attr('label-role');
+        if(row_id>0) {
 
+            addModal.find('.hide-on-edit').hide();
+
+        }
         addModal.find('[name=row_id]').val(row_id);
         addModal.find('[name=name]').val(name);
         addModal.find('[name=lastname]').val(lastname);

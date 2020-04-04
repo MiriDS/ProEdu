@@ -122,6 +122,7 @@ function ArrayToJson(form_data) {
 function modalEmpty(modalId,callBackFuncName) {
 
     $("#"+modalId).find('[name]:disabled').removeAttr("disabled");
+    $("#"+modalId).find('.hide-on-edit').show();
     $("#"+modalId).find('[name]').each(function() {
         $(this).val('');
     });

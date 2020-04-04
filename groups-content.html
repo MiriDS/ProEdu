@@ -369,6 +369,10 @@
         var role = 4;//tr.find('[label-role]').attr('label-role');
         var group_id = $("#groups_table tbody .selected").attr('row_id');
 
+        if(row_id>0) {
+            addModal.find('.hide-on-edit').hide();
+        }
+
         addModal.find('[name=row_id]').val(row_id);
         addModal.find('[name=name]').val(name);
         addModal.find('[name=lastname]').val(lastname);
