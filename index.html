@@ -601,13 +601,13 @@
 
         if(personInfo.role==1) {
 
-            $("[role-scope='student'],[role-scope='teacher']").remove();
+            $("[role-scope='student'],[role-scope='teacher'],[role-scope='admin-teacher']").remove();
 
             $("[role-scope='admin']").attr('style','display:flex');
         }
         else if(personInfo.role==2) {
 
-            $("[role-scope='admin'],[role-scope='student']").remove();
+            $("[role-scope='admin'],[role-scope='student'],[role-scope='admin-teacher']").remove();
             $("[role-scope='teacher']").show();
             //location.hash = "teacher-schedule";
             //return;
@@ -619,7 +619,7 @@
             $("[role-scope='teacher'] ").remove();
         }
         else if(personInfo.role==4) {
-            $("[role-scope='admin'],[role-scope='teacher']").remove();
+            $("[role-scope='admin'],[role-scope='teacher'],[role-scope='admin-teacher']").remove();
         }
 
 
