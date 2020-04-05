@@ -202,15 +202,15 @@
     });
 
     var d = new Date();
-    var n = d.getDay();//console.log(n)
+    var n = d.getDay();
     $("li[day]:eq("+(parseInt(n)-1)+")").first().click();
 
     standartRequest(requestType.get,groupApiRoute+'/lessons-amount-grouped-by-weekdays','',function (data) {
         for(var n in data) {
-            var dayName = data[n]['weekday'];
+            var day = data[n]['weekday'];
             var lessonCount = data[n]['amount'];
 
-            $(".weekly [dayName='"+dayName+"']").find('.badge').text(lessonCount);
+            $(".weekly [day='"+(parseInt(day))+"']").find('.badge').text(lessonCount);
         }
     });
 

@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>ProEdu - Distant Təhsil Modulu</title>
+    <title>ProEdu - Online Tədris Platforması</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="ProEdu - Distant Təhsil Modulu" name="description" />
+    <meta content="ProEdu - Online Tədris Platforması" name="description" />
     <meta content="Pronet MMC" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -51,16 +51,11 @@
                 <div class="float-right">
 
                     <div class="dropdown d-inline-block">
-                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                            
-                            <span class="d-none d-sm-inline-block ml-1" id="tenant_school">286 nomreli mekteb</span>
+                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="d-none d-sm-inline-block ml-1" id="active_tenant_name"></span>
                             <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item logout" href="#"> Tenant 2</a>
-                            <a class="dropdown-item logout" href="#"> Tenant 2</a>
-                            <a class="dropdown-item logout" href="#"> Tenant 2</a>
-                            <a class="dropdown-item logout" href="#"> Tenant 2</a>
-                            <a class="dropdown-item logout" href="#"> Tenant 2</a>
+                        <div class="dropdown-menu dropdown-menu-right" id="tenant_list">
                         </div>
                     </div>
 
@@ -586,6 +581,38 @@
 <script src="assets/js/jquery.mask.js"></script>
 <script>
 
+    var tenantList = {};
+    function getTenants() {
+        standartRequest(requestType.get,'tenants','',function(data) {
+            for(var n in data) {
+
+                tenantList = data;
+
+                var isActive = false;
+                if(data[n].id==tenantInformation.id)
+                    isActive = true;
+
+                $("#tenant_list").append('<a class="dropdown-item '+ (isActive?"active":"")+'" style="cursor:pointer" tenant-id="'+data[n].id+'" >'+data[n].name+'</a>');
+
+            }
+        })
+    }
+    getTenants();
+
+    $("#tenant_list").on('click','[tenant-id]',function () {
+        if($(this).hasClass('active'))
+            return;
+
+        var selectedTenant = $(this).attr('tenant-id');
+
+        for (var n in tenantList) {
+            if(tenantList[n].id == selectedTenant) {
+                localStorage.tenantInfo = JSON.stringify(tenantList[n]);
+                location.reload();
+            }
+        }
+    });
+
     window.addEventListener("hashchange", hashChange, false);
 
     var group_numbers = {
@@ -612,6 +639,7 @@
     function initUserInformation() {
 
         $("#person_name").text(personInfo.lastname+' '+personInfo.name);
+        $("#active_tenant_name").text(tenantInformation.name);
 
         if(personInfo.role==1) {
 
