@@ -263,6 +263,22 @@ File: Main Css File
   border-color: #a9a6a6 !important;
   position: relative; }
 
+.display-f {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.jc-sb {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+.custom-width {
+  width: 100px; }
+
+.mr {
+  margin-right: 5px; }
+
 @media (max-width: 991.98px) {
   .msk-blocks {
     -webkit-box-pack: justify;
