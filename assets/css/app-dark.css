@@ -94,6 +94,13 @@ File: Main Css (Dark) File
   background-color: #AB69C6;
   color: #fff; }
 
+.msk-blocks li.disabled .card {
+  background-color: #DDD;
+  opacity: 0.9; }
+
+.msk-blocks li.disabled :hover {
+  color: #505d69; }
+
 .weekly li .name {
   font-size: 15px;
   font-weight: 600; }
@@ -255,6 +262,22 @@ File: Main Css (Dark) File
 .border-color th {
   border-color: #a9a6a6 !important;
   position: relative; }
+
+.display-f {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.jc-sb {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+.custom-width {
+  width: 100px; }
+
+.mr {
+  margin-right: 5px; }
 
 @media (max-width: 991.98px) {
   .msk-blocks {
