@@ -6,7 +6,7 @@
 <div class="col-xl-12">
     <div class="card">
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive" style="min-height: 500px">
                 <form id="lesson-history-filters" onsubmit="return false;">
                     <input type=submit style="display: none">
                     <table id="lesson-history-table" class="table table-centered table-hover mb-0">
@@ -36,18 +36,18 @@
                                         <select name="groupNumber" class="form-control custom-width mr">
                                             <option value="0">hamısı</option>
                                         </select>
-                                        <select name="groupId" class="form-control custom-width">
+                                        <select name="groupId" class=" form-control custom-width">
                                             <option value="0">hamısı</option>
                                         </select>
                                     </div>
                                 </th>
                                 <th scope="col">
-                                    <select name="subjectId" class="form-control">
+                                    <select name="subjectId" class="selectize">
                                         <option value="0">hamısı</option>
                                     </select>
                                 </th>
                                 <th scope="col">
-                                    <select name="teacherId" class="form-control">
+                                    <select name="teacherId" class="selectize">
                                         <option value="0">hamısı</option>
                                     </select>
                                 </th>
@@ -200,6 +200,7 @@
             for(var n in data) {
                 $('[name=subjectId]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['name'])+'</option>')
             }
+            $('[name=subjectId]').selectize();
         });
 
         standartRequest(requestType.get,'employees','', function(data) {
@@ -211,6 +212,7 @@
 
                 $('[name=teacherId]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['lastName'])+' '+_.escape(data[n]['name'])+' '+_.escape(data[n]['patronymic'])+'</option>');
             }
+            $('[name=teacherId]').selectize();
         });
 
         $("#lesson-history-filters select").change(function () {

@@ -222,6 +222,7 @@
         for(var n in data) {
             addModal.find('[name=subject]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['name'])+'</option>')
         }
+        addModal.find('[name=subject]').selectize();
     });
 
 
@@ -246,7 +247,9 @@
 
                 addModal.find('[name=teacher]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['lastName'])+' '+_.escape(data[n]['name'])+' '+_.escape(data[n]['patronymic'])+'</option>');
             }
+            addModal.find('[name=teacher]').selectize();
         });
+
     }
 
 
@@ -358,6 +361,7 @@
     });
 
 
+    //$(".selectize").selectize();
 
     $("#activeModuleName").text("Dərs cədvəli");
 
