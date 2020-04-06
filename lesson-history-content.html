@@ -1,52 +1,67 @@
-
+<style>
+    .custom-width {
+        width: 115px !important;
+    }
+</style>
 <div class="col-xl-12">
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="lesson-history-table" class="table table-centered table-hover mb-0">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Tarix</th>
-                            <th scope="col">Sinif</th>
-                            <th scope="col">Fənn</th>
-                            <th scope="col">Müəllim</th>
-                            <th scope="col">Müddət(dəq)</th>
-                            <th scope="col">İştirak</th>
-                        </tr>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">
-                                <select name="" class="form-control">
-                                    <option value="">hamısı</option>
-                                </select>
-                            </th>
-                            <th scope="col" class="display-f">
-                                <select name="" class="form-control custom-width mr">
-                                    <option value="">hamısı</option>
-                                </select>
-                                <select name="" class="form-control custom-width">
-                                    <option value="">hamısı</option>
-                                </select>
-                            </th>
-                            <th scope="col">
-                                <select name="" class="form-control">
-                                    <option value="">hamısı</option>
-                                </select>
-                            </th>
-                            <th scope="col">
-                                <select name="" class="form-control">
-                                    <option value="">hamısı</option>
-                                </select>
-                            </th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <form id="lesson-history-filters" onsubmit="return false;">
+                    <input type=submit style="display: none">
+                    <table id="lesson-history-table" class="table table-centered table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Tarix</th>
+                                <th scope="col">Sinif</th>
+                                <th scope="col">Fənn</th>
+                                <th scope="col">Müəllim</th>
+                                <th scope="col">Müddət(dəq)</th>
+                                <th scope="col">İştirak</th>
+                            </tr>
 
-                    </tbody>
-                </table>
+                            <tr>
+
+                                <th scope="col"></th>
+                                <th scope="col">
+                                    <div  class="display-f">
+                                        <input name="dateFrom" class="form-control custom-width mr">
+                                        <input name="dateTo" class="form-control custom-width">
+                                    </div>
+
+                                </th>
+                                <th scope="col">
+                                    <div  class="display-f">
+                                        <select name="groupNumber" class="form-control custom-width mr">
+                                            <option value="0">hamısı</option>
+                                        </select>
+                                        <select name="groupId" class="form-control custom-width">
+                                            <option value="0">hamısı</option>
+                                        </select>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <select name="subjectId" class="form-control">
+                                        <option value="0">hamısı</option>
+                                    </select>
+                                </th>
+                                <th scope="col">
+                                    <select name="teacherId" class="form-control">
+                                        <option value="0">hamısı</option>
+                                    </select>
+                                </th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </div>
     </div>
@@ -58,12 +73,28 @@
     var groupApiRoute = "meeting";
     var studentScheduleCache = {};
 
-    table.append(loadingHtml);
-    standartRequest(requestType.get,groupApiRoute,'', function(data) {
-         console.log(data);
-        initTable(data);
-        $('#loadingHtml').remove();
-    });
+    function getLessonHistoryFilters() {
+
+        var data_mas = $("#lesson-history-filters").serializeArray();
+        var filteredData = [];
+
+        for(var b in data_mas ) {
+
+            if(data_mas[b].name=="subjectId" || data_mas[b].name=="teacherId" || data_mas[b].name=="groupId" || data_mas[b].name=="groupNumber") {
+                if(data_mas[b].value=='0') {
+                    continue;
+                }
+                else {
+                    data_mas[b].value = parseInt(data_mas[b].value);
+                }
+            }
+            filteredData.push(data_mas[b]);
+
+        }
+
+        var data = ArrayToJson(filteredData);
+        return data;
+    }
 
     function initTable(data) {
 
@@ -72,6 +103,18 @@
             table.find('tbody').append('<tr row_id="'+data[n].id+'"><th scope="row">'+(parseInt(n)+1)+'</th><td>'+_.escape(data[n].meetingCreatedAt)+'</td><td>'+_.escape(data[n].groupNumber)+_.escape(data[n].groupName)+'</td><td>'+_.escape(data[n].subjectName)+'</td><td>'+(_.escape(data[n].teacherLastName)+' '+_.escape(data[n].teacherName)+' '+_.escape(data[n].teacherPatronymic))+'</td><td>'+_.escape(data[n].duration)+'</td><td>'+(data[n].studentsTotalCount+'/'+data[n].meetingParticipantCount)+(parseInt(data[n].meetingParticipantCount)>0?' <i class="participants dripicons-user" style="cursor: pointer;vertical-align: inherit;"></i>':'')+'</td></td></tr>');
         }
     }
+
+    function getLessonHistory() {
+        var filters = getLessonHistoryFilters();
+        table.append(loadingHtml);
+        standartRequest(requestType.get,groupApiRoute,filters, function(data) {
+
+            initTable(data);
+            $('#loadingHtml').remove();
+        });
+    }
+
+
 
     $("#lesson-history-table").on('click','.participants',function() {
 
@@ -89,6 +132,99 @@
             $("#participantList").modal('show');
         });
     });
+
+
+    var groupCache = {};
+
+/*
+    $('[name=subjectId]').selectize({
+        create: true,
+        sortField: 'text'
+    });*/
+
+    function initFilters() {
+
+        $("[name=dateFrom],[name=dateTo]").mask('0000-00-00');
+        var aaa = moment().format('YYYY-MM-DD');
+        $("[name=dateFrom],[name=dateTo]").val(aaa);
+
+
+        fillGroupNumbers($("[name=groupNumber]"));
+
+        $("[name=groupNumber]").change(function () {
+
+            var group_number = $(this).val();
+            var groupSelect = $("[name=groupId]");
+
+            groupSelect.find('[value]:not([value=0])').remove();
+
+            if(group_number>0) {
+                groupSelect.removeAttr('disabled');
+            }
+            else {
+                groupSelect.attr('disabled',1);
+            }
+
+
+            if(group_number > 0) {
+                if(typeof groupCache[group_number] == 'undefined') {
+
+                    groupSelect.before(loadingHtml);
+                    standartRequest(requestType.get,'group'+'?group='+group_number,'', function(data) {
+
+                        $("#loadingHtml").remove();
+
+                        groupCache[group_number] = data;
+                        for(var n in data) {
+                            groupSelect.append('<option value="'+data[n]['id']+'">'+(_.escape(data[n]['name']))+'</td></option>');
+                        }
+                    });
+                }
+                else {
+                    data = groupCache[group_number];
+                    for(var n in data) {
+                        groupSelect.append('<option value="'+data[n]['id']+'">'+(_.escape(data[n]['name']))+'</td></option>');
+                    }
+                }
+            }
+            else {
+
+            }
+            // getLessons();
+        });
+
+
+        standartRequest(requestType.get,'subjects','', function(data) {
+
+
+            for(var n in data) {
+                $('[name=subjectId]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['name'])+'</option>')
+            }
+        });
+
+        standartRequest(requestType.get,'employees','', function(data) {
+
+            for(var n in data) {
+
+                if(data[n].role==1)
+                    continue;
+
+                $('[name=teacherId]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['lastName'])+' '+_.escape(data[n]['name'])+' '+_.escape(data[n]['patronymic'])+'</option>');
+            }
+        });
+
+        $("#lesson-history-filters select").change(function () {
+            $("#lesson-history-filters").submit();
+        });
+
+    }
+
+    $("#lesson-history-filters").on('submit',function() {
+        getLessonHistory();
+    });
+
+    initFilters();
+    getLessonHistory();
 
     $("#activeModuleName").text("Dərs tarixçəsi");
 </script>

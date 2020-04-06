@@ -98,6 +98,7 @@ function standartRequest(type,link,form_data,success_process) {
             }
         },
         error: function(data) {
+            $('#loadingHtml').remove();
             var data = data['responseJSON'];
             if(typeof data['error'] != "undefined") {
                 alertify.alert().setHeader('Bildiriş!').setting({

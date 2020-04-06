@@ -29,6 +29,7 @@
     <!-- App Css-->
     <link href="assets/css/app.min.css?v=4" rel="stylesheet" type="text/css" />
 
+
 </head>
 
 <style>
@@ -175,7 +176,7 @@
                         <div class="col-md-8">
                             <h4 class="page-title mb-1" id="activeModuleName"></h4>
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item active" id="tenantName">Welcome to ProEdu</li>
+                                <!--<li class="breadcrumb-item active" id="tenantName">Welcome to ProEdu</li>-->
                             </ol>
                         </div>
                     </div>
@@ -579,6 +580,7 @@
 <script src="assets/js/moment.js?v=1.1"></script>
 <script src="assets/js/sweetalert.min.js"></script>
 <script src="assets/js/jquery.mask.js"></script>
+
 <script>
 
     var tenantList = {};
@@ -723,13 +725,21 @@
 
     });
 
-    $("#tenantName").text(tenantInformation.name);
+    //$("#tenantName").text(tenantInformation.name);
 
     var loadingHtml = '<div id="loadingHtml" class="d-flex hull-height-spinner-opacity">\n' +
         '                        <div class="spinner-border text-primary" role="status">\n' +
         '                            <span class="sr-only">Loading...</span>\n' +
         '                        </div>';
 
+
+    function fillGroupNumbers(el) {
+        for(var n in group_numbers) {
+
+            el.append('<option value="'+n+'">'+group_numbers[n]+'</option>');
+
+        }
+    }
 </script>
 
 </body>
