@@ -19,8 +19,8 @@
     <!-- datepicker -->
     <link href="assets/libs/air-datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- jvectormap -->
-    <link href="assets/libs/jqvmap/jqvmap.min.css" rel="stylesheet" />
+    <!-- Selectize -->
+    <link href="assets/libs/selectize/css/selectize.css" rel="stylesheet" type="text/css" />
 
     <!-- Bootstrap Css -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -321,7 +321,7 @@
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label">Fənn</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" name="subject">
+                                    <select class="selectize" name="subject">
                                         <option>Fənni seçin</option>
                                     </select>
                                 </div>
@@ -330,7 +330,7 @@
                                 <label class="col-md-4 col-form-label">Müəllim</label>
                                 <div class="col-md-8">
                                     <div class="teacherSelect">
-                                        <select name="teacher" class="form-control">
+                                        <select name="teacher" class="selectize">
                                             <option>Müəllimi seçin</option>
                                         </select>
                                     </div>
@@ -397,7 +397,7 @@
                             </div>
 
                             <div class="form-group form-group-custom mb-4">
-                                <select class="form-control" name="role" id="role" required>
+                                <select class="selectize" name="role" id="role" required>
                                     <!--<option disabled selected>İstifadəçi rolunu seçin</option>-->
                                     <option value="1">Admin</option>
                                     <option value="2">Müəllim</option>
@@ -564,15 +564,8 @@
 <!-- alertifyjs js -->
 <script src="assets/libs/alertifyjs/build/alertify.min.js"></script>
 
-<!-- apexcharts -->
-
-<script src="assets/libs/jquery-knob/jquery.knob.min.js"></script>
-
-<!-- Jq vector map -->
-<script src="assets/libs/jqvmap/jquery.vmap.min.js"></script>
-<script src="assets/libs/jqvmap/maps/jquery.vmap.usa.js"></script>
-
-<!--<script src="assets/js/pages/dashboard.init.js"></script>-->
+<!-- Selectize -->
+<script src="assets/libs/selectize/js/standalone/selectize.min.js"></script>
 
 <script src="assets/js/app.js"></script>
 <script src="assets/js/func.js?v=1.6"></script>
@@ -582,6 +575,8 @@
 <script src="assets/js/jquery.mask.js"></script>
 
 <script>
+
+    $(".selectize").selectize();
 
     var tenantList = {};
     function getTenants() {
