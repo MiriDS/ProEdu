@@ -203,17 +203,27 @@
             $('[name=subjectId]').selectize();
         });
 
-        standartRequest(requestType.get,'employees','', function(data) {
-
-            for(var n in data) {
-
-                if(data[n].role==1)
-                    continue;
-
-                $('[name=teacherId]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['lastName'])+' '+_.escape(data[n]['name'])+' '+_.escape(data[n]['patronymic'])+'</option>');
-            }
+        if(personInfo.role == 2) {
+            var teacherName = (_.escape(personInfo['lastname'])+' '+_.escape(personInfo['name'])+' '+_.escape(personInfo['patronymic']));
+            $('[name=teacherId]').append('<option selected value="'+personInfo['id']+'">'+teacherName+'</option>');
             $('[name=teacherId]').selectize();
-        });
+        }
+        else {
+
+            standartRequest(requestType.get,'employees','', function(data) {
+
+                for(var n in data) {
+
+                    if(data[n].role==1)
+                        continue;
+
+                    $('[name=teacherId]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['lastName'])+' '+_.escape(data[n]['name'])+' '+_.escape(data[n]['patronymic'])+'</option>');
+                }
+                $('[name=teacherId]').selectize();
+            });
+
+        }
+
 
         $("#lesson-history-filters select").change(function () {
             $("#lesson-history-filters").submit();
