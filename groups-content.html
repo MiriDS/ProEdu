@@ -4,9 +4,9 @@
             <div class="card-header bg-transparent border-bottom">
                 <h5 class="header-title fcsb">
                     Sİnİf nömrəsi
-                    <!--<button type="button" class="float-right btn btn-primary btn-sm">
+                    <button type="button" class="float-right btn btn-primary btn-sm">
                         <i class="mdi mdi-plus-thick"></i>
-                    </button>-->
+                    </button>
                 </h5>
             </div>
             <div class="table-responsive h400s">
@@ -59,6 +59,9 @@
                     <button onclick="modalEmpty('studentAddModal'); checkAndOpenStudentModal();" type="button" class="float-right btn btn-primary btn-sm">
                         <i class="mdi mdi-plus-thick"></i>
                     </button>
+                    <button data-toggle="modal" data-target="#pupilAddModal" type="button" class="float-right btn btn-primary btn-sm">
+                        <i class="mdi mdi-plus-thick"></i>
+                    </button>                    
                 </h5>
             </div>
             <div class="table-responsive h400s">
@@ -134,7 +137,7 @@
     }
     for(var n in group_numbers) {
         $("#group_numbers_table tbody").append('<tr class="'+(n==1?"selected":"")+'" group_number_id="'+n+'" >\n' +
-            '                        <td>'+group_numbers[n]+'</td>\n' +
+            '                        <td>'+group_numbers[n]+' <div class="btn-group float-right" role="group"><button type="button" class="btn btn-outline-secondary btn-sm delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Redaktə"><i class="mdi mdi-pencil-outline"></i></button></div></td>\n' +
             '                    </tr>');
     }
 
@@ -166,7 +169,8 @@
 
                 table.find('tbody').append('<tr row_id="'+data[n]['id']+'"><td>'+(_.escape(data[n]['name']))+'</td>'+
                     '<td>'+
-                    '<div class="btn-group float-right" role="group">'+
+                    '<div class="btn-group float-right ai-c" role="group">'+
+                    '<div class="custom-control custom-checkbox purple-check"><input type="checkbox" class="custom-control-input" id="customCheck1" checked=""><label class="custom-control-label" for="customCheck1"></label></div>'+
                     '<button type="button" class="btn btn-outline-secondary btn-sm delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sil">'+
                     '<i class="mdi mdi-trash-can"></i>'+
                     '</button>'+

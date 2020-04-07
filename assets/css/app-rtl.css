@@ -274,6 +274,44 @@ File: Main Css (RTL) File
       -ms-flex-pack: justify;
           justify-content: space-between; }
 
+.ai-c {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #ab69c6 !important;
+  background-color: #ab69c6 !important; }
+
+.pupil-list {
+  border: 1px solid #ddd;
+  list-style: none;
+  padding: 0px;
+  margin: 0;
+  height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden; }
+  .pupil-list li {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer; }
+  .pupil-list li:hover {
+    background-color: #f1f1f1; }
+
+.pupil-list::-webkit-scrollbar {
+  width: 2px; }
+
+.pupil-list::-webkit-scrollbar-track {
+  background-color: #ddd; }
+
+.pupil-list::-webkit-scrollbar-thumb {
+  background-color: #2FA97C;
+  height: 2px; }
+
 .custom-width {
   width: 100px; }
 
