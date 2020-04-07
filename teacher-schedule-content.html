@@ -205,6 +205,8 @@
     var n = d.getDay();
     $("li[day]:eq("+(parseInt(n)-1)+")").first().click();
 
+    $(".weekly [day]").find('.badge').text(0);
+
     standartRequest(requestType.get,groupApiRoute+'/lessons-amount-grouped-by-weekdays','',function (data) {
         for(var n in data) {
             var day = data[n]['weekday'];

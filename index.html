@@ -321,17 +321,14 @@
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label">Fənn</label>
                                 <div class="col-md-8">
-                                    <select class="selectize" name="subject">
-                                        <option>Fənni seçin</option>
-                                    </select>
+                                    <select name="subject"></select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label">Müəllim</label>
                                 <div class="col-md-8">
                                     <div class="teacherSelect">
-                                        <select name="teacher" class="selectize">
-                                            <option>Müəllimi seçin</option>
+                                        <select name="teacher">
                                         </select>
                                     </div>
                                     <div style="padding-top: 8px;" class="teacherText"></div>
@@ -397,7 +394,7 @@
                             </div>
 
                             <div class="form-group form-group-custom mb-4">
-                                <select class="selectize" name="role" id="role" required>
+                                <select class="form-control" name="role" id="role" required>
                                     <!--<option disabled selected>İstifadəçi rolunu seçin</option>-->
                                     <option value="1">Admin</option>
                                     <option value="2">Müəllim</option>
@@ -525,11 +522,13 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-        <div id="pupilAddModal" class="modal fade bs-personal-add-modal" tabindex="-1" role="dialog" aria-labelledby="pupilAddModal" aria-hidden="true" data-backdrop="static">
+
+
+        <div id="groupNumberAddModal" class="modal fade bs-personal-add-modal" tabindex="-1" role="dialog" aria-labelledby="groupNumberAddModal" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog modal-dialog-centered modal-md">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0">Şagirdə əlavə edilməsi</h5>
+                        <h5 class="modal-title mt-0">Sinif nömrəsi əlavə edilməsi</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -537,44 +536,95 @@
                     <input type="hidden" name="row_id">
                     <form>
                         <div class="modal-body">
+                            <div class="form-group form-group-custom mb-4">
+                                <input type="text" class="form-control" name="name" id="group_number11" required>
+                                <label for="group_number11">Adı</label>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <div class="mt-4">
+                            <button class="btn btn-secondary waves-effect waves-light" data-dismiss="modal"  type="submit">Bağla</button>
+                            <button class="btn btn-primary waves-effect waves-light" type="submit" onclick="saveGroupNumber();" >Əlavə et</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="groupAddModal" class="modal fade bs-personal-add-modal" tabindex="-1" role="dialog" aria-labelledby="groupAddModal" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0">Sinif əlavə edilməsi</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <input type="hidden" name="row_id">
+                    <form>
+                        <div class="modal-body">
+                            <input type="hidden" name="number" required>
+                            <div class="form-group form-group-custom mb-4">
+                                <input type="text" class="form-control" name="name" id="name3" required>
+                                <label for="name3">Adı</label>
+                            </div>
+
+                        </div>
+                    </form>
+                    <div class="form-group form-group-custom mb-4">
+                        <input type="checkbox" class="form-control" name="type" id="checkbox1" required>
+                        <label for="checkbox1">Alt qrup</label>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="mt-4">
+                            <button class="btn btn-secondary waves-effect waves-light" data-dismiss="modal"  type="submit">Bağla</button>
+                            <button class="btn btn-primary waves-effect waves-light" type="submit" onclick="saveGroup();" >Əlavə et</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="studentGroupAddModal" class="modal fade bs-personal-add-modal" tabindex="-1" role="dialog" aria-labelledby="studentGroupAddModal" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0">Şagird əlavə edilməsi</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <input type="hidden" name="row_id">
+                    <input type="hidden" name="group">
+                    <form>
+                        <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <h5 class="font-size-14">Sinif nömrə</h5>
-                                    <select name="" id="" class="selectize form-control">
+                                    <select name="group_number" class="form-control">
                                         <option value="" selected>Nömrəni seçin</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <h5 class="font-size-14">Sinif hərfi</h5>
-                                    <select name="" id="" class="selectize form-control">
-                                        <option value="" selected>Hərfi seçin</option>
+                                    <select name="group_id" id="" disabled class="form-control">
+                                        <option selected>Hərfi seçin</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
+                            <!--<div class="row">
                                 <div class="col-md-6 mb-3">
                                     <input type="text" class="form-control form-control-sm" placeholder="Axtar" />
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <ul class="pupil-list">
-                                        <li>
-                                            Axmed Mamedli
-                                        </li>
-                                        <li>
-                                            Axmed Mamedli
-                                        </li>
+                                    <ul class="student-list pupil-list">
                                     </ul>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <ul class="pupil-list">
-                                        <li>
-                                            Axmed Mamedli
-                                        </li>
-                                        <li>
-                                            Axmed Mamedli
-                                        </li>
+                                    <ul class="selected-student-list pupil-list">
                                     </ul>
                                 </div>
                             </div>
@@ -583,7 +633,7 @@
                     <div class="modal-footer">
                         <div class="mt-4">
                             <button class="btn btn-secondary waves-effect waves-light" data-dismiss="modal"  type="submit">Bağla</button>
-                            <button class="btn btn-primary waves-effect waves-light" type="submit" onclick="saveSubject();" >Əlavə et</button>
+                            <button class="btn btn-primary waves-effect waves-light" type="submit" onclick="saveMultipleStudent();" >Əlavə et</button>
                         </div>
                     </div>
                 </div><!-- /.modal-content -->
@@ -677,26 +727,6 @@
 
     window.addEventListener("hashchange", hashChange, false);
 
-    var group_numbers = {
-        '1':'1',
-        '2':'2',
-        '3':'3',
-        '4':'4',
-        '5':'5',
-        '6':'6',
-        '7':'7',
-        '8':'8',
-        '9':'9',
-        '10':'10',
-        '11':'11',
-    };
-
-    /*var module_mapper = {
-        'groups' : 'Siniflər',
-        'personal' : 'Personal',
-        'subject' : 'Fənn',
-        'schedule' : 'Cədvəl'
-    };*/
 
     function initUserInformation() {
 
@@ -794,11 +824,13 @@
 
 
     function fillGroupNumbers(el) {
-        for(var n in group_numbers) {
 
-            el.append('<option value="'+n+'">'+group_numbers[n]+'</option>');
+        standartRequest(requestType.get,'group-numbers','', function(data) {
+            for(var n in data) {
+                el.append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['name'])+'</option>');
+            }
+        });
 
-        }
     }
 </script>
 

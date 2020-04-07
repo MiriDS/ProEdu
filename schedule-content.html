@@ -1,5 +1,5 @@
 
-<div class="row justify-content-md-center">
+<div id="schedule-filter" class="row justify-content-md-center">
     <div class="col-xl-3">
         <div class="card">
             <div class="card-header bg-transparent border-bottom">
@@ -109,12 +109,12 @@
     addModal.find("[name='lessonStartsAt']").mask('00:00');
     addModal.find("[name='lessonEndsAt']").mask('00:00');
 
-    fillGroupNumbers($("[name=group_number]"));
+    fillGroupNumbers($("#schedule-filter [name=group_number]"));
 
-    $("[name=group_number]").change(function () {
+    $("#schedule-filter [name=group_number]").change(function () {
 
         var group_number = $(this).val();
-        var groupSelect = $("[name=group_id]");
+        var groupSelect = $("#schedule-filter [name=group_id]");
 
         groupSelect.find('[value]').remove();
 
@@ -158,11 +158,11 @@
         5:"Saturday",
         6:"Sunday"
     };*/
-    $("[name=group_id]").change(function () {
+    $("#schedule-filter [name=group_id]").change(function () {
 
-        var group_number = $("[name=group_number]").val();
-        var group_id = $("[name=group_id]").val();
-        var group_name = $("[name=group_id]").find(":selected").text();
+        var group_number = $("#schedule-filter [name=group_number]").val();
+        var group_id = $("#schedule-filter [name=group_id]").val();
+        var group_name = $("#schedule-filter [name=group_id]").find(":selected").text();
         if((group_id>0)==false)
             return;
 
@@ -175,7 +175,9 @@
 
     function checkAndAddLesson(dayNumber)
     {
-        var group = $("[name=group_id]").val();
+        var group = $("#schedule-filter [name=group_id]").val();
+
+
         if((group>0)==false){
             alert('İlk öncə sinifi seçin');
             return;
@@ -211,14 +213,13 @@
         standartRequest(rType,url,data, function() {
 
             getLessons();
-            modalEmpty("lessonAddModal");
             saveModal.modal('hide');
         });
     }
 
 
     standartRequest(requestType.get,'subjects','', function(data) {
-        addModal.find('[name=subject]').html('');
+        //addModal.find('[name=subject]').html('<option>Fənn seçin</option>');
         for(var n in data) {
             addModal.find('[name=subject]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['name'])+'</option>')
         }
@@ -238,7 +239,6 @@
         standartRequest(requestType.get,'employees','', function(data) {
 
             addModal.find('.teacherSelect').show();
-
             addModal.find('[name=teacher]').html('');
             for(var n in data) {
 
@@ -256,7 +256,7 @@
 
     function getLessons() {
 
-        var group_id = $("[name=group_id]").val();
+        var group_id = $("#schedule-filter [name=group_id]").val();
 
         if((group_id>0)==false)
             return;
