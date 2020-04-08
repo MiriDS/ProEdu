@@ -562,20 +562,21 @@
                         </button>
                     </div>
                     <input type="hidden" name="row_id">
-                    <form>
-                        <div class="modal-body">
+                    
+                    <div class="modal-body">
+                        <form>
                             <input type="hidden" name="number" required>
                             <div class="form-group form-group-custom mb-4">
                                 <input type="text" class="form-control" name="name" id="name3" required>
                                 <label for="name3">Adı</label>
                             </div>
-
+                        </form>
+                        <div class="custom-control custom-checkbox mb-4">
+                            <input type="checkbox" class="custom-control-input" name="type" id="checkbox1" required>
+                            <label class="custom-control-label" for="checkbox1">Alt qrup</label>
                         </div>
-                    </form>
-                    <div class="form-group form-group-custom mb-4">
-                        <input type="checkbox" class="form-control" name="type" id="checkbox1" required>
-                        <label for="checkbox1">Alt qrup</label>
                     </div>
+                    
                     <div class="modal-footer">
                         <div class="mt-4">
                             <button class="btn btn-secondary waves-effect waves-light" data-dismiss="modal"  type="submit">Bağla</button>
