@@ -195,7 +195,7 @@
         var rowId = saveModal.find('[name=row_id]').val();
 
         for(var b in data_mas ) {
-            if(data_mas[b].name=="group" || data_mas[b].name=="weekday" || data_mas[b].name=="subject" || data_mas[b].name=="teacher" ) {
+            if(data_mas[b].name=="group" || data_mas[b].name=="weekday" || data_mas[b].name=="subject" || data_mas[b].name=="teacher" || data_mas[b].name=="room" ) {
                 data_mas[b].value=parseInt(data_mas[b].value);
             }
             else if(data_mas[b].name=="lessonStartsAt" || data_mas[b].name=="lessonEndsAt") {
@@ -224,6 +224,13 @@
             addModal.find('[name=subject]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['name'])+'</option>')
         }
         addModal.find('[name=subject]').selectize();
+    });
+
+    standartRequest(requestType.get,'rooms','', function(data) {
+        for(var n in data) {
+            addModal.find('[name=room]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['name'])+'</option>')
+        }
+        addModal.find('[name=room]').selectize();
     });
 
 

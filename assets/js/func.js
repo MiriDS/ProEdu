@@ -24,7 +24,6 @@ else
     var tenantInformation = JSON.parse(localStorage.tenantInfo);
 
 
-
 var personInfo = {};
 
 function getUserInformation() {
