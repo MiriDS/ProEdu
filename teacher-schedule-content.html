@@ -169,7 +169,7 @@
     table.on('click','.join_meeting',function () {
 
         var row_id = $(this).closest('[row_id]').attr('row_id');
-        standartRequest(requestType.get,'meeting/create-and-join/'+row_id,'',function (data) {
+        standartRequest(requestType.get,'meeting/join/'+row_id,'',function (data) {
 
             swal({
                 title: 'Distant dərsə başlamaq istəyirsiniz?',
