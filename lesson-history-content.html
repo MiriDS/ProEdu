@@ -144,7 +144,7 @@
 
     function initFilters() {
 
-        $("[name=dateFrom],[name=dateTo]").mask('0000-00-00');
+        //$("[name=dateFrom],[name=dateTo]").mask('0000-00-00');
         var aaa = moment().format('YYYY-MM-DD');
         $("[name=dateFrom],[name=dateTo]").val(aaa);
 
@@ -227,6 +227,15 @@
 
         $("#lesson-history-filters select").change(function () {
             $("#lesson-history-filters").submit();
+        });
+
+
+        $("[name=dateFrom],[name=dateTo]").datepicker({
+            dateFormat: "yyyy-mm-dd",
+            autoClose: true,
+            onSelect: function onSelect(fd, date) {
+                getLessonHistory();
+            }
         });
 
     }

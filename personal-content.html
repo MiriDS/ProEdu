@@ -7,19 +7,19 @@
                     Müəllim əlavə et
                 </a>
             </div>
-            <h5 class="header-title mb-4">Personal.</h5>
+            <h5 class="header-title mb-4">Müəllim</h5>
             <div class="table-responsive">
                 <table class="table table-centered table-hover mb-0" id="person_table">
                     <thead>
-                    <tr>
-                        <th scope="col">№</th>
-                        <th scope="col">Adı</th>
-                        <th scope="col">Soyadı</th>
-                        <th scope="col">Ata adı</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Rol</th>
-                        <th scope="col" width="100">Əməliyyat</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">№</th>
+                            <th scope="col">Adı</th>
+                            <th scope="col">Soyadı</th>
+                            <th scope="col">Ata adı</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Rol</th>
+                            <th scope="col" width="100">Əməliyyat</th>
+                        </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
@@ -140,6 +140,12 @@
             if(data_mas[b].name=="role") {
                 data_mas[b].value = parseInt(data_mas[b].value);
             }
+            if(data_mas[b].name=="email") {
+                if(!isEmail(data_mas[b].value)) {
+                    displayError('Email düzgün daxil edilməmişdir');
+                    return;
+                }
+            }
         }
 
 
@@ -158,5 +164,5 @@
         });
     }
 
-    $("#activeModuleName").text(" Personal ");
+    $("#activeModuleName").text(" Müəllim ");
 </script>

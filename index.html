@@ -59,7 +59,6 @@
                         <div class="dropdown-menu dropdown-menu-right" id="tenant_list">
                         </div>
                     </div>
-
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" >
@@ -143,6 +142,7 @@
                                             <div class="col-lg-4">
                                                 <a href="#personal" menu-item class="dropdown-item">Müəllim</a>
                                                 <a href="#subject" menu-item class="dropdown-item">Fənn</a>
+                                                <a href="#room" menu-item class="dropdown-item">Otaq</a>
                                                 <a href="#groups" menu-item class="dropdown-item">Sinif / Qrup</a>
                                                 <a href="#schedule" menu-item class="dropdown-item">Cədvəl</a>
                                                 <a href="#lesson-history" menu-item class="dropdown-item">Dərs tarixçəsi</a>
@@ -193,7 +193,7 @@
                                 <li class="selected" for="personal">
                                     <div class="card">
                                         <div class="card-body">
-                                            <span>1</span>
+                                            <span></span>
                                             <i class="dripicons-user"></i>
                                             <div class="name">
                                                 Müəllim
@@ -205,7 +205,7 @@
                                 <li for="subject">
                                     <div class="card" >
                                         <div class="card-body">
-                                            <span>2</span>
+                                            <span></span>
                                             <i class="dripicons-list"></i>
                                             <div class="name">
                                                 Fənn
@@ -214,10 +214,22 @@
                                     </div>
                                 </li>
 
+                                <li for="room">
+                                    <div class="card" >
+                                        <div class="card-body">
+                                            <span></span>
+                                            <i class="dripicons-list"></i>
+                                            <div class="name">
+                                                Otaq
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
                                 <li  for="groups">
                                     <div class="card">
                                         <div class="card-body">
-                                            <span>3</span>
+                                            <span></span>
                                             <i class="dripicons-graduation"></i>
                                             <div class="name">
                                                 Sinif / Qrup
@@ -229,7 +241,7 @@
                                 <li for="schedule">
                                     <div class="card">
                                         <div class="card-body">
-                                            <span>4</span>
+                                            <span></span>
                                             <i class="dripicons-calendar"></i>
                                             <div class="name">
                                                 Cədvəl
@@ -241,7 +253,7 @@
                                 <li for="lesson-history">
                                     <div class="card">
                                         <div class="card-body">
-                                            <span>5</span>
+                                            <span></span>
                                             <i class="dripicons-time-reverse"></i>
                                             <div class="name">
                                                 Dərs tarixçəsi
@@ -253,7 +265,7 @@
                                 <li class="disabled" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();">
                                     <div class="card">
                                         <div class="card-body">
-                                            <span>6</span>
+                                            <span></span>
                                             <i class="dripicons-document"></i>
                                             <div class="name">
                                                 Jurnal
@@ -265,7 +277,7 @@
                                 <li class="disabled" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();">
                                     <div class="card">
                                         <div class="card-body">
-                                            <span>7</span>
+                                            <span></span>
                                             <i class="dripicons-to-do"></i>
                                             <div class="name">
                                                 Gündəlik
@@ -277,7 +289,7 @@
                                 <li class="disabled" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();">
                                     <div class="card">
                                         <div class="card-body">
-                                            <span>8</span>
+                                            <span></span>
                                             <i class="dripicons-document-edit"></i>
                                             <div class="name">
                                                 Tapşırıqlar
@@ -389,7 +401,7 @@
                             </div>
 
                             <div class="form-group form-group-custom mb-4 hide-on-edit" >
-                                <input type="text" class="form-control" name="email" id="email" required>
+                                <input type="email" class="form-control" name="email" id="email" required>
                                 <label for="email">Email ünvanı</label>
                             </div>
 
@@ -516,6 +528,34 @@
                         <div class="mt-4">
                             <button class="btn btn-secondary waves-effect waves-light" data-dismiss="modal"  type="submit">Bağla</button>
                             <button class="btn btn-primary waves-effect waves-light" type="submit" onclick="saveSubject();" >Əlavə et</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="roomAddModal" class="modal fade bs-personal-add-modal" tabindex="-1" role="dialog" aria-labelledby="roomAddModal" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0">Otaq əlavə edilməsi</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <input type="hidden" name="row_id">
+                    <form>
+                        <div class="modal-body">
+                            <div class="form-group form-group-custom mb-4">
+                                <input type="text" class="form-control" name="name" id="roomname" required>
+                                <label for="roomname">Adı</label>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <div class="mt-4">
+                            <button class="btn btn-secondary waves-effect waves-light" data-dismiss="modal"  type="submit">Bağla</button>
+                            <button class="btn btn-primary waves-effect waves-light" type="submit" onclick="saveRoom();" >Əlavə et</button>
                         </div>
                     </div>
                 </div><!-- /.modal-content -->
@@ -658,6 +698,7 @@
     <!-- end main content-->
 
 </div>
+
 <!-- END layout-wrapper -->
 
 <!-- Right bar overlay-->
@@ -683,11 +724,12 @@
 <script src="assets/libs/selectize/js/standalone/selectize.min.js"></script>
 
 <script src="assets/js/app.js"></script>
-<script src="assets/js/func.js?v=1.7"></script>
+<script src="assets/js/func.js?v=1.8"></script>
 <script src="assets/js/underscore.js?v=1.1"></script>
 <script src="assets/js/moment.js?v=1.1"></script>
 <script src="assets/js/sweetalert.min.js"></script>
 <script src="assets/js/jquery.mask.js"></script>
+
 
 <script>
 
@@ -823,6 +865,9 @@
         '                        </div>';
 
 
+    $(".msk-blocks li").each(function() {
+        $(this).find('.card-body').children('span:eq(0)').text(parseInt($(this).index())+1);
+    })
     function fillGroupNumbers(el) {
 
         standartRequest(requestType.get,'group-numbers','', function(data) {
@@ -832,6 +877,7 @@
         });
 
     }
+
 </script>
 
 </body>

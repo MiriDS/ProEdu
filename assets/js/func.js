@@ -5,8 +5,8 @@ const requestType = {
     put:"put",
     delete:"delete"
 };
-const API_URL = "https://core.proedu.az/v1/";
-//const API_URL = "http://proedu-backend.site/v1/";
+//const API_URL = "https://core.proedu.az/v1/";
+const API_URL = "http://proedu-backend.site/v1/";
 
 function logout() {
     localStorage.clear();
@@ -79,6 +79,9 @@ function standartRequest(type,link,form_data,success_process) {
             401: function(responseObject, textStatus, jqXHR) {
                 logout();
             },
+            403: function(responseObject, textStatus, jqXHR) {
+                logout();
+            }
             /*200: function (data) {
                 success_process(data['data']);
             },
@@ -344,4 +347,9 @@ function displayError(name) {
         'label':'Bağla',
         'message': name+' vacib xanadı',
     }).show();
+}
+
+function isEmail(email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
 }

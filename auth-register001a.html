@@ -118,7 +118,7 @@
         <script src="https://unicons.iconscout.com/release/v2.0.1/script/monochrome/bundle.js"></script>
         <script src="assets/js/app.js"></script>
         <script src="assets/libs/alertifyjs/build/alertify.min.js"></script>
-        <script src="assets/js/func.js?v=1.7"></script>
+        <script src="assets/js/func.js?v=1.8"></script>
 
         <script>
             $("#registerForm").on('submit',function() {
@@ -144,10 +144,20 @@
                     },
                     statusCode: {
                         409: function (responseObject, textStatus, jqXHR) {
-                            alertify.alert().setHeader('Bildiriş!').setting({
-                                'label':'Bağla',
-                                'message': 'This email is already registered',//responseObject.message,
-                            }).show();
+                            var errorObject = JSON.parse(responseObject.responseText);
+                            var messageKey = errorObject['error']['messageKey'];
+                            if(messageKey=='company_name_exists') {
+                                alertify.alert().setHeader('Bildiriş!').setting({
+                                    'label':'Bağla',
+                                    'message': 'Müəssisə artıq qeydiyyatdan keçirilib',
+                                }).show();
+                            }
+                            else {
+                                alertify.alert().setHeader('Bildiriş!').setting({
+                                    'label':'Bağla',
+                                    'message': 'Email artıq qeydiyyatdan keçirilib',
+                                }).show();
+                            }
                         },
                     }
                 });
