@@ -160,7 +160,7 @@
     };*/
     $("#schedule-filter [name=group_id]").change(function () {
 
-        var group_number = $("#schedule-filter [name=group_number]").val();
+        var group_number = $("#schedule-filter [name=group_number]").find(":selected").text();
         var group_id = $("#schedule-filter [name=group_id]").val();
         var group_name = $("#schedule-filter [name=group_id]").find(":selected").text();
         if((group_id>0)==false)
