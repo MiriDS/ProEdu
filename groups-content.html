@@ -504,7 +504,7 @@
     }
 
     var groupCache = {};
-    $("#studentGroupAddModal [name=group_number]").change(function () {
+    $("#studentGroupAddModal [name=group_number]").unbind('change').change(function () {
 
         var group_number = $(this).val();
         var groupSelect = $("#studentGroupAddModal [name=group_id]");
@@ -539,7 +539,7 @@
         }
     });
 
-    $("#studentGroupAddModal [name=group_id]").change(function() {
+    $("#studentGroupAddModal [name=group_id]").unbind('change').change(function() {
         var group_id = $(this).val();
         $("#studentGroupAddModal").find('.student-list').html(loadingHtml);
         standartRequest(requestType.get,studentApiRoute+'?group_id='+group_id,'', function(data) {
@@ -561,6 +561,7 @@
         if($("#studentGroupAddModal .selected-student-list [person-id='"+person_id+"']").length==0) {
             $("#studentGroupAddModal .selected-student-list").append(person_clone);
         }
+        setStudentCountsForAddModal();
     });
 
 
@@ -572,7 +573,42 @@
         if($("#studentGroupAddModal .student-list [person-id='"+person_id+"']").length==0) {
             $("#studentGroupAddModal .student-list").append(person_clone);
         }
+        setStudentCountsForAddModal();
     });
 
+    $("#studentGroupAddModal").on('click','#selectAllStudents',function() {
+
+        $("#studentGroupAddModal .student-list [person-id]").click();
+
+    });
+
+    $("#studentGroupAddModal").on('click','#returnAllStudents',function() {
+
+        $("#studentGroupAddModal .selected-student-list [person-id]").click();
+
+    });
+
+    function setStudentCountsForAddModal() {
+        $("#student-list-count").text("("+$("#studentGroupAddModal .student-list [person-id]").length+")");
+        $("#selected-student-list-count").text("("+$("#studentGroupAddModal .selected-student-list [person-id]").length+")");
+    }
+
+
+    $("#searchStudents").unbind("keyup").keyup(function() {
+       console.log($(this).val());
+       var val = $(this).val().trim();
+        $("#studentGroupAddModal .student-list [person-id]").each(function() {
+           var studentName = $(this).text();
+
+            var re = new RegExp(val, 'i');
+            //console.log(studentName.match(re));
+           if(val=='' || studentName.match(re)) {
+               $(this).show();
+           }
+           else {
+               $(this).hide();
+           }
+        });
+    });
     $("#activeModuleName").text(" Sinif / Qrup ");
 </script>

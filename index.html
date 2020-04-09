@@ -664,28 +664,28 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-2">
-                                    <input class="form-control" type="text" value="Axtar">
+                                    <input id="searchStudents" class="form-control" type="text">
                                 </div>
                                 <div class="col-md-6 mb-2"></div>
                             </div>
-                            <div class="row" style="display: none;">
+                            <!--<div class="row" style="display: none;">
                                 <div class="col-md-6 mb-2 text-align-right">
                                     <h5 class="font-size-14 display-inline">
                                         Hamısını köçür
                                     </h5>
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">
+                                    <button type="button" id="selectAllStudents" class="btn btn-secondary btn-sm waves-effect waves-light">
                                         <i class="ti-angle-double-right"></i>
                                     </button>
                                 </div>
                                 <div class="col-md-6 mb-2">
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">
+                                    <button type="button" id="returnAllStudents" class="btn btn-secondary btn-sm waves-effect waves-light">
                                         <i class="ti-angle-double-left"></i>
                                     </button>
                                     <h5 class="font-size-14 display-inline">
                                         Hamısını qaytar
                                     </h5>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <ul class="student-list pupil-list">
@@ -698,20 +698,20 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4 mb-2 display-f ai-c">
-                                    <h5 class="font-size-14 mb-0">Ümumi say: <span class="pupil-list-count">(4)</span></h5>
+                                    <h5 class="font-size-14 mb-0">Ümumi say: <span id="student-list-count"></span></h5>
                                 </div>
                                 <div class="col-md-2 mb-2 text-align-right">
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">
+                                    <button  id="selectAllStudents"  type="button" class="btn btn-secondary btn-sm waves-effect waves-light">
                                         <i class="ti-angle-double-right"></i>
                                     </button>
                                 </div>
                                 <div class="col-md-2 mb-2">
-                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">
+                                    <button type="button"  id="returnAllStudents"class="btn btn-secondary btn-sm waves-effect waves-light">
                                         <i class="ti-angle-double-left"></i>
                                     </button>
                                 </div>
                                 <div class="col-md-4 mb-2 text-align-right display-f ai-c">
-                                    <h5 class="font-size-14 mb-0">Əlavə olundu: <span class="pupil-list-count">(2)</span></h5>
+                                    <h5 class="font-size-14 mb-0">Əlavə olundu: <span id="selected-student-list-count" class="pupil-list-count"></span></h5>
                                 </div>                                
                             </div>
                         </div>
