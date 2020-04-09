@@ -311,19 +311,23 @@
                     }
 
                     $("#lesson-table tbody tr:eq("+z+")").find('td:eq('+(n-1)+')').html('<div row_id="'+lessonData.id+'" class="lesson-block">\n' +
-                        '                                <div class="subject">\n' +
-                        '                                    Fənn:\n' +
-                        '                                    <span>'+(_.escape(lessonData.name))+'</span>\n' +
-                        '                                </div>\n' +
-                        '                                <div class="teacher">\n' +
-                        '                                    Müəllim:\n' +
-                        '                                    <span>'+(_.escape(lessonData.teacherLastname)+" "+_.escape(lessonData.teacherName))+'</span>\n' +
-                        '                                </div>\n' +
-                        '                                <div class="date">\n' +
-                        '                                    Keçirilmə vaxtı:\n' +
-                        '                                    <span>'+(lessonData.startsAt+'-'+lessonData.endsAt)+'</span>\n' +
-                        '                                </div>\n' + deleteButton +
-                        '                               </div>');
+                        '<div class="subject">\n' +
+                        '    Fənn:\n' +
+                        '    <span>'+(_.escape(lessonData.name))+'</span>\n' +
+                        '</div>\n' +
+                        '<div class="teacher">\n' +
+                        '    Müəllim:\n' +
+                        '    <span>'+(_.escape(lessonData.teacherLastname)+" "+_.escape(lessonData.teacherName))+'</span>\n' +
+                        '</div>\n' +
+                        '<div class="date">\n' +
+                        '   Keçirilmə vaxtı:\n' +
+                        '   <span>'+(lessonData.startsAt+'-'+lessonData.endsAt)+'</span>\n' +
+                        '</div>\n' + 
+                        '<div class="room">\n' +
+                        '   Otaq:\n' +
+                        '   <span data-toggle="tooltip" data-placement="top" data-original-title="'+(_.escape(lessonData.roomName))+'">'+ (lessonData.roomName !== null ? (_.escape(lessonData.roomName)) : 'Qeyd edilməyib') +'</span>\n' +
+                        '   </div>\n' + deleteButton +
+                        '</div>');
                 }
 
             }
@@ -332,6 +336,8 @@
             $("#lesson-table tbody tr").each(function() {
                 $(this).children('td:eq(0)').prepend('<div class="lesson-num">\n' + ( countNum++ )+'</div>');
             })
+
+            $('[data-toggle="tooltip"]').tooltip();
         });
     }
 

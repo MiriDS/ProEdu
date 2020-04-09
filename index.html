@@ -53,6 +53,7 @@
 
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-2.jpg" >
                             <span class="d-none d-sm-inline-block ml-1" id="active_tenant_name"></span>
                             <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
                         </button>
@@ -188,117 +189,119 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-12">
-                            <ul class="msk-blocks" role-scope="admin">
+                            <div class="horizontal-responsive">
+                                <ul class="msk-blocks" role-scope="admin">
 
-                                <li class="selected" for="personal">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <span></span>
-                                            <i class="dripicons-user"></i>
-                                            <div class="name">
-                                                Müəllim
+                                    <li class="selected" for="personal">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <span></span>
+                                                <i class="dripicons-user"></i>
+                                                <div class="name">
+                                                    Müəllim
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
 
-                                <li for="subject">
-                                    <div class="card" >
-                                        <div class="card-body">
-                                            <span></span>
-                                            <i class="dripicons-list"></i>
-                                            <div class="name">
-                                                Fənn
+                                    <li for="subject">
+                                        <div class="card" >
+                                            <div class="card-body">
+                                                <span></span>
+                                                <i class="dripicons-list"></i>
+                                                <div class="name">
+                                                    Fənn
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
 
-                                <li for="room">
-                                    <div class="card" >
-                                        <div class="card-body">
-                                            <span></span>
-                                            <i class="dripicons-list"></i>
-                                            <div class="name">
-                                                Otaq
+                                    <li for="room">
+                                        <div class="card" >
+                                            <div class="card-body">
+                                                <span></span>
+                                                <i class="dripicons-enter"></i>
+                                                <div class="name">
+                                                    Otaq
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
 
-                                <li  for="groups">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <span></span>
-                                            <i class="dripicons-graduation"></i>
-                                            <div class="name">
-                                                Sinif / Qrup
+                                    <li  for="groups">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <span></span>
+                                                <i class="dripicons-graduation"></i>
+                                                <div class="name">
+                                                    Sinif / Qrup
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
 
-                                <li for="schedule">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <span></span>
-                                            <i class="dripicons-calendar"></i>
-                                            <div class="name">
-                                                Cədvəl
+                                    <li for="schedule">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <span></span>
+                                                <i class="dripicons-calendar"></i>
+                                                <div class="name">
+                                                    Cədvəl
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
 
-                                <li for="lesson-history">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <span></span>
-                                            <i class="dripicons-time-reverse"></i>
-                                            <div class="name">
-                                                Dərs tarixçəsi
+                                    <li for="lesson-history">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <span></span>
+                                                <i class="dripicons-time-reverse"></i>
+                                                <div class="name">
+                                                    Dərs tarixçəsi
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
 
-                                <li class="disabled" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <span></span>
-                                            <i class="dripicons-document"></i>
-                                            <div class="name">
-                                                Jurnal
+                                    <li class="disabled" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <span></span>
+                                                <i class="dripicons-document"></i>
+                                                <div class="name">
+                                                    Jurnal
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
 
-                                <li class="disabled" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <span></span>
-                                            <i class="dripicons-to-do"></i>
-                                            <div class="name">
-                                                Gündəlik
+                                    <li class="disabled" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <span></span>
+                                                <i class="dripicons-to-do"></i>
+                                                <div class="name">
+                                                    Gündəlik
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
 
-                                <li class="disabled" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <span></span>
-                                            <i class="dripicons-document-edit"></i>
-                                            <div class="name">
-                                                Tapşırıqlar
+                                    <li class="disabled" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <span></span>
+                                                <i class="dripicons-document-edit"></i>
+                                                <div class="name">
+                                                    Tapşırıqlar
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
 
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
                         <div class="section-container" style="width: 100% !important;">
 
@@ -647,33 +650,69 @@
                     <form>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-2">
                                     <h5 class="font-size-14">Sinif nömrə</h5>
                                     <select name="group_number" class="form-control">
-                                        <!--<option value="" selected>Nömrəni seçin</option>-->
                                     </select>
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-2">
                                     <h5 class="font-size-14">Sinif hərfi</h5>
                                     <select name="group_id" id="" disabled class="form-control">
                                         <option selected>Hərfi seçin</option>
                                     </select>
                                 </div>
                             </div>
-                            <!--<div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control form-control-sm" placeholder="Axtar" />
+                            <div class="row">
+                                <div class="col-md-6 mb-2">
+                                    <input class="form-control" type="text" value="Axtar">
                                 </div>
-                            </div>-->
+                                <div class="col-md-6 mb-2"></div>
+                            </div>
+                            <div class="row" style="display: none;">
+                                <div class="col-md-6 mb-2 text-align-right">
+                                    <h5 class="font-size-14 display-inline">
+                                        Hamısını köçür
+                                    </h5>
+                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">
+                                        <i class="ti-angle-double-right"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">
+                                        <i class="ti-angle-double-left"></i>
+                                    </button>
+                                    <h5 class="font-size-14 display-inline">
+                                        Hamısını qaytar
+                                    </h5>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <ul class="student-list pupil-list">
-                                    </ul>
+                                    </ul>                                    
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <ul class="selected-student-list pupil-list">
-                                    </ul>
+                                    </ul>                                    
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-2 display-f ai-c">
+                                    <h5 class="font-size-14 mb-0">Ümumi say: <span class="pupil-list-count">(4)</span></h5>
+                                </div>
+                                <div class="col-md-2 mb-2 text-align-right">
+                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">
+                                        <i class="ti-angle-double-right"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-2 mb-2">
+                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">
+                                        <i class="ti-angle-double-left"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-4 mb-2 text-align-right display-f ai-c">
+                                    <h5 class="font-size-14 mb-0">Əlavə olundu: <span class="pupil-list-count">(2)</span></h5>
+                                </div>                                
                             </div>
                         </div>
                     </form>

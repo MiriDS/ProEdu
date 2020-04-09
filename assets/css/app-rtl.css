@@ -66,7 +66,7 @@ File: Main Css (RTL) File
 .msk-blocks li {
   margin-right: 15px;
   cursor: pointer;
-  width: 150px; }
+  min-width: 108px; }
 
 .msk-blocks li span {
   font-weight: 700;
@@ -217,7 +217,7 @@ File: Main Css (RTL) File
   font-weight: 600; }
 
 .lesson-block {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500; }
 
 .lesson-block span {
@@ -229,9 +229,15 @@ File: Main Css (RTL) File
 
 .lesson-block .date span {
   color: #B71C0C;
-  margin-bottom: 0;
+  font-size: 11px; }
+
+.lesson-block .room span {
+  margin: 0;
   border-bottom: none;
-  font-size: 13px; }
+  max-width: 122px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; }
 
 .lesson-block .delete-lesson {
   display: none;
@@ -319,6 +325,16 @@ File: Main Css (RTL) File
   background-color: #2FA97C;
   height: 2px; }
 
+.pupil-list-count {
+  font-weight: 700;
+  color: #2fa97c; }
+
+.display-inline {
+  display: inline; }
+
+.text-align-right {
+  text-align: right; }
+
 .custom-width {
   width: 100px; }
 
@@ -330,16 +346,14 @@ File: Main Css (RTL) File
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between; }
-    .msk-blocks li {
-      width: auto; }
-      .msk-blocks li .card-body {
-        padding: 12px; }
-        .msk-blocks li .card-body span {
-          font-size: 17px; }
-        .msk-blocks li .card-body i {
-          display: none; }
-        .msk-blocks li .card-body .name {
-          font-size: 12px; }
+    .msk-blocks li .card-body {
+      padding: 12px; }
+      .msk-blocks li .card-body span {
+        font-size: 17px; }
+      .msk-blocks li .card-body i {
+        display: none; }
+      .msk-blocks li .card-body .name {
+        font-size: 12px; }
     .msk-blocks li:last-child {
       margin-right: 0; }
   .weekly-table table {
