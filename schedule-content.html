@@ -220,13 +220,18 @@
 
     standartRequest(requestType.get,'subjects','', function(data) {
         //addModal.find('[name=subject]').html('<option>Fənn seçin</option>');
+        addModal.find('[name=subject]').selectize()[0].selectize.destroy();///.selectize('destroy');
+        addModal.find('[name=subject]').html('');
         for(var n in data) {
             addModal.find('[name=subject]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['name'])+'</option>')
         }
         addModal.find('[name=subject]').selectize();
     });
 
+
     standartRequest(requestType.get,'rooms','', function(data) {
+        addModal.find('[name=room]').selectize()[0].selectize.destroy();//.selectize('destroy');
+        addModal.find('[name=room]').html('');
         for(var n in data) {
             addModal.find('[name=room]').append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['name'])+'</option>')
         }

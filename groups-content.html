@@ -477,6 +477,7 @@
         var row_id = $("#groups_table tbody .selected").attr('row_id');
         var type = $("#groups_table tbody .selected").attr('type');
 
+
         if(row_id>0) {
 
 
@@ -487,9 +488,18 @@
 
             }
             else {
+                modalEmpty("studentGroupAddModal");
                 $("#studentGroupAddModal").find('[name=group]').val(row_id);
+                $("#studentGroupAddModal").find('.student-list').html('');
+                $("#studentGroupAddModal").find('.selected-student-list').html('');
                 $("#studentGroupAddModal").modal('show');
             }
+        }
+        else {
+            alertify.alert().setHeader('Bildiriş!').setting({
+                'label':'Bağla',
+                'message': "Sinif seçilməib",
+            }).show();
         }
     }
 
@@ -506,6 +516,7 @@
         }
         else {
             groupSelect.attr('disabled',1);
+            return;
         }
 
         if(typeof groupCache[group_number] == 'undefined') {

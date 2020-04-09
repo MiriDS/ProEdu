@@ -169,37 +169,37 @@
     table.on('click','.join_meeting',function () {
 
         var row_id = $(this).closest('[row_id]').attr('row_id');
-        standartRequest(requestType.get,'meeting/join/'+row_id,'',function (data) {
 
-            swal({
-                title: 'Distant dərsə başlamaq istəyirsiniz?',
-                //text: 'Your will not be able to recover this imaginary file!',
-                icon: 'warning',
-                buttons: {
-                    cancel: {
-                        text: 'Xeyr',
-                        value: null,
-                        visible: true,
-                        className: "",
-                        closeModal: true
-                    },
-                    confirm: {
-                        text: 'Bəli!',
-                        value: true,
-                        visible: true,
-                        className: "bg-green",
-                        closeModal: true
-                    }
+        swal({
+            title: 'Distant dərsə başlamaq istəyirsiniz?',
+            //text: 'Your will not be able to recover this imaginary file!',
+            icon: 'warning',
+            buttons: {
+                cancel: {
+                    text: 'Xeyr',
+                    value: null,
+                    visible: true,
+                    className: "",
+                    closeModal: true
+                },
+                confirm: {
+                    text: 'Bəli!',
+                    value: true,
+                    visible: true,
+                    className: "bg-green",
+                    closeModal: true
                 }
-            }).then(function(isConfirm) {
+            }
+        }).then(function(isConfirm) {
 
-                if (isConfirm) {
+            if (isConfirm) {
+                standartRequest(requestType.get,'meeting/join/'+row_id,'',function (data) {
                     window.open(data);
-                }
-
-            });
+                });
+            }
 
         });
+
 
     });
 
