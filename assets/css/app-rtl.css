@@ -31,16 +31,15 @@ File: Main Css (RTL) File
 @import url("https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap");
 /* 1. General */
 .weekly {
-  min-width: 1200px;
   padding: 0;
   margin: 0 0 10px 0;
   list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center; }
@@ -61,7 +60,10 @@ File: Main Css (RTL) File
 
 .weekly li {
   cursor: pointer;
-  min-width: 160px; }
+  min-width: 160px;
+  margin-right: 10px; }
+  .weekly li :last-child {
+    margin-right: 0; }
 
 .msk-blocks li {
   margin-right: 15px;
@@ -112,6 +114,17 @@ File: Main Css (RTL) File
 .weekly li .name {
   font-size: 15px;
   font-weight: 600; }
+
+.weekly li .date-bold {
+  font-size: 12px;
+  font-weight: 700;
+  display: block; }
+
+.weekly li .time {
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+  color: #2fa97c; }
 
 .weekly li span {
   font-size: 13px;
@@ -341,6 +354,72 @@ File: Main Css (RTL) File
 .mr {
   margin-right: 5px; }
 
+.button-goup-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .button-goup-text span {
+    margin: 0 15px;
+    display: inline-block; }
+
+.journal-dash {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  position: relative; }
+  .journal-dash li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 10px 0; }
+    .journal-dash li .heading {
+      font-weight: 600;
+      font-size: 14px;
+      width: 150px; }
+    .journal-dash li .content {
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      padding: 0 !important;
+      margin: 0 15px 0 0 !important; }
+      .journal-dash li .content input {
+        margin-right: 15px; }
+    .journal-dash li .controls button {
+      margin-left: 0; }
+      .journal-dash li .controls button i {
+        font-size: 11px; }
+  .journal-dash .start-lesson {
+    position: absolute;
+    top: 0;
+    right: 0; }
+
+.journal-table thead tr th:nth-child(3) {
+  width: 120px; }
+
+.journal-table tbody tr th {
+  vertical-align: middle;
+  width: 50px; }
+
+.journal-table tbody tr td {
+  vertical-align: middle; }
+
+.fly-on-scroll-fixed {
+  position: fixed;
+  top: 80px;
+  z-index: 999;
+  left: 0;
+  width: 100%;
+  margin: 0; }
+
 @media (max-width: 991.98px) {
   .msk-blocks {
     -webkit-box-pack: justify;
@@ -356,6 +435,12 @@ File: Main Css (RTL) File
         font-size: 12px; }
     .msk-blocks li:last-child {
       margin-right: 0; }
+  .weekly {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
+    .weekly li .name {
+      font-size: 14px; }
   .weekly-table table {
     margin-left: 36px; }
   .horizontal-responsive {
