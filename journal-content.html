@@ -1,0 +1,452 @@
+
+
+<div class="page-content">
+    <div class="page-content-wrapper">
+                <div class="container-fluid">
+
+                    <div class="row justify-content-md-center" id="journal-filters">
+                        <div class="col-xl-3 col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <select name="subject">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <select name="group_number" class="form-control">
+                                        <option selected disabled>Sinifi seçin</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <select name="group_id"  class="form-control">
+                                        <option selected disabled>Hərfi seçin</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12 mb-3">
+                            <div class="button-goup-text" id="journal-week-switcher">
+                                <button style="display: none" class="default-week"></button>
+                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-light prev-week">
+                                    <i class="dripicons-chevron-left"></i>
+                                </button>
+                                <span ></span>
+                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-light next-week">
+                                    <i class="dripicons-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="horizontal-responsive">
+                                <ul class="weekly" id="journal-dates"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="journal-for-date" style="display: none;">
+                        <div class="row fly-on-scroll">
+                        <div class="col-xl-6 offset-xl-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <ul class="journal-dash">
+                                        <li>
+                                            <div class="heading">Fənn:</div>
+                                            <div class="content" id="journal-subject-name"></div>
+                                        </li>
+                                        <li>
+                                            <div class="heading">Sinif:</div>
+                                            <div class="content" id="journal-group-name"></div>
+                                        </li>
+                                        <li>
+                                            <div class="heading">Dərsin mövzusu:</div>
+                                            <div class="content">
+                                                <input name="lesson-title" type="text" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="controls">
+                                                <div class="button-items">
+                                                    <button id="save-lesson-title" type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Redaktə et">
+                                                        <i class="dripicons-pencil"></i>
+                                                    </button>
+                                                    <!--<button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Təmizlə">
+                                                        <i class="dripicons-trash"></i>
+                                                    </button>-->
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!--<li>
+                                            <div class="heading">Ev tapşırığı:</div>
+                                            <div class="content">
+                                                <input type="text" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="controls">
+                                                <div class="button-items">
+                                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Redaktə et">
+                                                        <i class="dripicons-pencil"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Təmizlə">
+                                                        <i class="dripicons-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>-->
+                                        <div class="start-lesson">
+                                            <button class="btn btn-secondary btn-rounded waves-effect waves-light join_meeting" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Distant dərsi başlat">
+                                                <i class="dripicons-camera"></i>
+                                            </button>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row" >
+                        <div class="col-xl-6 offset-xl-3">
+                            <div class="card horizontal-responsive">
+                                <table class="table table-bordered mb-0 journal-table" id="journal-student-table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Şagird</th>
+                                        <th>Qiymət/Davamiyyət</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div> <!-- container-fluid -->
+            </div>
+</div>
+
+<!-- END layout-wrapper -->
+
+<!-- Right Sidebar -->
+<!-- /Right-bar -->
+
+
+<!-- Begin page -->
+
+<!-- END layout-wrapper -->
+<script>
+
+    var rates = {
+        '0':'-',
+        '-1':'Q',
+        '1':'1',
+        '2':'2',
+        '3':'3',
+        '4':'4',
+        '5':'5',
+        '6':'6',
+        '7':'7',
+        '8':'8',
+        '9':'9',
+        '10':'10',
+
+    };
+    var weekDayNames = {
+        1:'Bazar ertəsi',
+        2:'Çərşənbə axşamı',
+        3:'Çərşənbə',
+        4:'Cümə axşamı',
+        5:'Cümə',
+        6:'Şənbə',
+        7:'Bazar'
+    }
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+        if (document.body.scrollTop > 480 || document.documentElement.scrollTop > 480 && width > 425) {
+            $('.fly-on-scroll').addClass('fly-on-scroll-fixed');
+        } else {
+            $('.fly-on-scroll').removeClass('fly-on-scroll-fixed');
+        }
+    }
+
+
+    standartRequest(requestType.get,'subjects','', function(data) {
+        //addModal.find('[name=subject]').html('<option>Fənn seçin</option>');
+        var el = $("#journal-filters [name=subject]");
+        el.selectize()[0].selectize.destroy();///.selectize('destroy');
+        el.html('');
+        for(var n in data) {
+            el.append('<option value="'+data[n]['id']+'">'+_.escape(data[n]['name'])+'</option>')
+        }
+        el.selectize();
+    });
+
+
+    fillGroupNumbers($("#journal-filters [name=group_number]"));
+
+    var groupCache = {};
+
+    $("#journal-filters [name=group_number]").change(function () {
+
+        var group_number = $(this).val();
+        var groupSelect = $("#journal-filters [name=group_id]");
+
+        groupSelect.find('[value]').remove();
+
+        if(group_number>0) {
+            groupSelect.removeAttr('disabled');
+        }
+        else {
+            groupSelect.attr('disabled',1);
+        }
+
+        if(typeof groupCache[group_number] == 'undefined') {
+
+            groupSelect.before(loadingHtml);
+            standartRequest(requestType.get,'group'+'?group='+group_number,'', function(data) {
+
+                $("#loadingHtml").remove();
+
+                groupCache[group_number] = data;
+                for(var n in data) {
+                    groupSelect.append('<option value="'+data[n]['id']+'">'+(_.escape(data[n]['name']))+'</td></option>');
+                }
+            });
+        }
+        else {
+            data = groupCache[group_number];
+            for(var n in data) {
+                groupSelect.append('<option value="'+data[n]['id']+'">'+(_.escape(data[n]['name']))+'</td></option>');
+            }
+        }
+
+        groupSelect.trigger("change");
+
+    });
+
+    $("#journal-filters [name=group_id]").unbind('change').change(function () {
+        getJournalFiltersForLessonList();
+    });
+
+    $("#journal-filters [name=subject]").unbind('change').change(function () {
+        getJournalFiltersForLessonList();
+    });
+
+    var currentWeek = moment().startOf('isoweek');
+
+    function getJournalFiltersForLessonList() {
+
+        var date = currentWeek;
+
+        var groupId = $("#journal-filters [name=group_id]").val();
+
+        var subject = $("#journal-filters [name=subject]").val();
+
+
+        var subjectText = $("#journal-filters [name=subject] :selected").text();
+        var groupNumberName = groupId?$("#journal-filters [name=group_number] :selected").text():'-';
+        var groupName  = groupId?$("#journal-filters [name=group_id] :selected").text():'';
+        $("#journal-subject-name").text(subjectText);
+        $("#journal-group-name").text(groupNumberName+groupName);
+
+
+        if(!(groupId>0)) {
+            return;
+        }
+        if(!(subject>0)) {
+            return;
+        }
+
+        $("#journal-for-date").hide();
+
+        standartRequest(requestType.get,'group-schedules/mine'+'?groupId='+groupId+'&subjectId='+subject+'&lessonDate='+(date.format('DD-MM-YYYY')),'', function(data) {
+            $("#journal-dates").html('');
+
+            for(var n in data) {
+                var lessonList = data[n];
+
+                for (var z in lessonList) {
+
+                    var lessonInfo = lessonList[z];
+                    var lessonDate = moment(date).add(parseInt(lessonInfo.weekday)-1, 'days');
+
+                    $("#journal-dates").append('<li day="'+lessonInfo.weekday+'" lesson-id="'+lessonInfo.id+'" date="'+lessonDate.format('DD-MM-YYYY')+'">\n' +
+                        '                    <div class="card">\n' +
+                        '                    <div class="card-body text-center">\n' +
+                        '                    <div class="name">\n' +
+                        '                    '+weekDayNames[lessonInfo.weekday]+' \n' +
+                        '                </div>\n' +
+                        '                <span class="date-bold">'+lessonDate.format('DD.MM.YYYY')+'</span>\n' +
+                        '                <span class="time">'+lessonInfo.startsAt+' - '+lessonInfo.endsAt+'</span>\n' +
+                        '                </div>\n' +
+                        '                </div>\n' +
+                        '                </li>');
+                    }
+
+            }
+
+            $("#journal-dates li:eq(0)").click();
+        });
+    }
+
+
+    $("#journal-dates").on('click','li[lesson-id]',function () {
+
+        if($(this).hasClass("selected"))
+            return;
+        $('#journal-dates li.selected').removeClass('selected');
+        $(this).addClass('selected');
+
+        var lessonId = $(this).attr("lesson-id");
+        var lessonDate = $(this).attr("date");
+
+        $("[name=lesson-title]").val('');
+        standartRequest(requestType.get, 'lessons/' + lessonId + '/' + lessonDate, '', function (data) {
+
+            if(data)
+            $("[name=lesson-title]").val(data.topic);
+
+        });
+
+        var studentTable = $("#journal-student-table").find('tbody');
+        studentTable.empty();
+        standartRequest(requestType.get, 'lesson-student-marks/' + lessonId + '/' + lessonDate, '', function (data) {
+
+
+            for (var n in data) {
+
+                data[n]['mark'] = data[n]['mark']==null?'0':data[n]['mark'];
+
+                var ratesHtml = '';//<option value="0"> - </option>';
+                for (var b in rates) {
+                    ratesHtml += '<option '+(data[n]['mark']==b?"selected":"")+' value="'+b+'">'+rates[b]+'</option>';
+                }
+
+                var studentName = _.escape(data[n].name)+' '+_.escape(data[n].lastname)+' '+_.escape(data[n].patronymic);
+                studentTable.append('<tr student-id="'+data[n]['id']+'">\n' +
+                    '                                        <th scope="row">1</th>\n' +
+                    '                                        <td>'+studentName+'</td>\n' +
+                    '                                        <td>\n' +
+                    '                                            <select name="rate" class="form-control form-control-sm">'+ratesHtml +'</select>\n' +
+                    '                                        </td>\n' +
+                    '                                    </tr>');
+
+                studentTable.find('tr[student-id="'+data[n]['id']+'"]').find('[name=rate]').val(data[n]['mark']);
+            }
+
+        });
+
+        $("#journal-for-date").show();
+    });
+
+    $("#journal-student-table").on('change','[name="rate"]',function () {
+
+        var rate = $(this).val();
+        if (rate == '0') {
+            rate = null;
+        }
+
+        var student = $(this).closest('[student-id]').attr("student-id");
+
+        var lessonId = $('#journal-dates li.selected').attr("lesson-id");
+        var lessonDate = $('#journal-dates li.selected').attr("date");
+
+
+        var dataObject = {
+            "student": parseInt(student),
+            "mark": parseInt(rate),
+            "groupSchedule": parseInt(lessonId),
+            "lessonDate": lessonDate
+        };
+
+        standartRequest(requestType.post, 'lesson-student-marks', dataObject, function (data) {
+
+        });
+
+    });
+
+    $("#save-lesson-title").unbind("click").click(function() {
+        var title = $("[name=lesson-title]").val();
+
+        if(title!='') {
+            var lessonId = $('#journal-dates li.selected').attr("lesson-id");
+            var lessonDate = $('#journal-dates li.selected').attr("date");
+
+            var dataObject = {
+                "groupSchedule": parseInt(lessonId),
+                "lessonDate": lessonDate,
+                "topic": title
+            };
+
+            standartRequest(requestType.post, 'lessons', dataObject, function (data) {
+            });
+        }
+    });
+
+    $('.join_meeting').click(function () {
+
+        var lessonId = $('#journal-dates li.selected').attr("lesson-id");
+        var lessonDate = $('#journal-dates li.selected').attr("date");
+
+        var showMessage = 'Distant dərsə başlamaq istəyirsiniz?';
+
+        swal({
+            title: showMessage,
+            //text: 'Your will not be able to recover this imaginary file!',
+            icon: 'warning',
+            buttons: {
+                cancel: {
+                    text: 'Xeyr',
+                    value: null,
+                    visible: true,
+                    className: "",
+                    closeModal: true
+                },
+                confirm: {
+                    text: 'Bəli!',
+                    value: true,
+                    visible: true,
+                    className: "bg-green",
+                    closeModal: true
+                }
+            }
+        }).then(function(isConfirm) {
+
+            if (isConfirm) {
+                standartRequest(requestType.get,'meeting/join/'+lessonId,'',function (data) {
+                    window.open(data);
+                });
+            }
+
+        });
+
+
+    });
+
+    $("#journal-week-switcher").on('click','button',function() {
+
+        if($(this).hasClass('prev-week')) {
+            currentWeek = moment(currentWeek).add(-7, 'days');
+        }
+        else if($(this).hasClass('next-week')){
+            currentWeek = moment(currentWeek).add(7, 'days');
+        }
+
+        $("#journal-week-switcher").find('span').text(currentWeek.format('DD-MM-YYYY')+' - '+moment(currentWeek).add(6, 'days').format('DD-MM-YYYY')+(currentWeek.valueOf()==moment().startOf('isoweek').valueOf()?' (Cari həftə) ':''));
+        getJournalFiltersForLessonList();
+    });
+
+    $("#journal-week-switcher .default-week").trigger('click');
+
+
+</script>

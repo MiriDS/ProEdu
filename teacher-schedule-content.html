@@ -137,7 +137,7 @@
 
         table.find('tbody').html('');
         for(var n in data) {
-            table.find('tbody').append('<tr row_id="'+data[n].id+'"><th scope="row">'+(parseInt(n)+1)+'</th><td>'+(data[n].startsAt)+'</td><td>'+(data[n].endsAt)+'</td><td>'+_.escape(data[n].name)+'</td><td>'+(_.escape(data[n].teacherLastname)+' '+_.escape(data[n].teacherName))+'</td><td>'+(_.escape(data[n].groupNumber)+' '+_.escape(data[n].groupName))+'</td><td>'+_.escape(data[n].roomName)+'</td><td><button type="button" class="btn btn-outline-secondary btn-sm join_meeting" data-toggle="tooltip" data-placement="top" title="Online dərsə başla"><i class="mdi mdi-camera"></i></button></td></tr>');
+            table.find('tbody').append('<tr teacher_id="'+data[n].teacherId+'" row_id="'+data[n].id+'"><th scope="row">'+(parseInt(n)+1)+'</th><td>'+(data[n].startsAt)+'</td><td>'+(data[n].endsAt)+'</td><td>'+_.escape(data[n].name)+'</td><td>'+(_.escape(data[n].teacherLastname)+' '+_.escape(data[n].teacherName))+'</td><td>'+(_.escape(data[n].groupNumber)+' '+_.escape(data[n].groupName))+'</td><td>'+_.escape(data[n].roomName)+'</td><td><button type="button" class="btn btn-outline-secondary btn-sm join_meeting" data-toggle="tooltip" data-placement="top" title="Online dərsə başla"><i class="mdi mdi-camera"></i></button></td></tr>');
         }
     }
 
@@ -169,9 +169,12 @@
     table.on('click','.join_meeting',function () {
 
         var row_id = $(this).closest('[row_id]').attr('row_id');
+        var teacherId = $(this).closest('[row_id]').attr('teacher_id');
+
+        var showMessage = (teacherId==personInfo.id?'Distant dərsə başlamaq istəyirsiniz?':'Distant dərsə keçid almaq istəyirsiniz?');
 
         swal({
-            title: 'Distant dərsə başlamaq istəyirsiniz?',
+            title: showMessage,
             //text: 'Your will not be able to recover this imaginary file!',
             icon: 'warning',
             buttons: {
