@@ -134,7 +134,7 @@
 
         table.find('tbody').html('');
         for(var n in data) {
-            table.find('tbody').append('<tr row_id="'+data[n].id+'"><th scope="row">'+(parseInt(n)+1)+'</th><td>'+_.escape(data[n].name)+'</td><td>'+(_.escape(data[n].teacherLastname)+' '+_.escape(data[n].teacherName))+'</td><td>'+_.escape(data[n].topic)+'</td><td>'+_.escape(data[n].task)+'</td><td>'+_.escape(data[n].mark)+'</td></tr>');
+            table.find('tbody').append('<tr row_id="'+data[n].id+'"><th scope="row">'+(parseInt(n)+1)+'</th><td>'+_.escape(data[n].name)+'</td><td>'+(_.escape(data[n].teacherLastname)+' '+_.escape(data[n].teacherName))+'</td><td>'+_.escape(data[n].topic)+'</td><td>'+_.escape(data[n].mark=='-1'?'Qaib':data[n].mark)+'</td><td>'+_.escape(data[n].task)+'</td></tr>');
         }
     }
 
