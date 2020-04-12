@@ -1,0 +1,180 @@
+<div class="col-xl-12">
+    <div class="horizontal-responsive">
+        <ul class="weekly">
+            <li day="1" dayName="Monday">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="name">
+                            Bazar ertəsi
+                            <span class="badge badge-primary ml-1"></span>
+                        </div>
+                        <span class="date"></span>
+                    </div>
+                </div>
+            </li>
+            <li day="2" dayName="Tuesday">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="name">
+                            Çərşənbə axşamı
+                            <span class="badge badge-primary ml-1"></span>
+                        </div>
+                        <span class="date"></span>
+                    </div>
+                </div>
+            </li>
+            <li day="3" dayName="Wednesday" >
+                <div class="card">
+                    <div class="card-body">
+                        <div class="name">
+                            Çərşənbə
+                            <span class="badge badge-primary ml-1"></span>
+                        </div>
+                        <span class="date"></span>
+                    </div>
+                </div>
+            </li>
+            <li day="4" dayName="Thursday">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="name">
+                            Cümə axşamı
+                            <span class="badge badge-primary ml-1"></span>
+                        </div>
+                        <span class="date"></span>
+                    </div>
+                </div>
+            </li>
+            <li day="5" dayName="Friday">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="name">
+                            Cümə
+                            <span class="badge badge-primary ml-1"></span>
+                        </div>
+                        <span class="date"></span>
+                    </div>
+                </div>
+            </li>
+            <li day="6" dayName="Saturday">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="name">
+                            Şənbə
+                            <span class="badge badge-primary ml-1"></span>
+                        </div>
+                        <span class="date"></span>
+                    </div>
+                </div>
+            </li>
+            <li day="7" dayName="Sunday">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="name">
+                            Bazar
+                            <span class="badge badge-primary ml-1"></span>
+                        </div>
+                        <span class="date"></span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="header-title mb-4"><span id="selectedDate"></span> tarixinə olan dərs cədvəli.</h5>
+
+            <div class="table-responsive">
+                <table id="student-diary-table" class="table table-centered table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Dərs</th>
+                            <th scope="col">Fənn</th>
+                            <th scope="col">Müəllim</th>
+                            <th scope="col">Dərsin mövzüsü</th>
+                            <th scope="col">Qiymət</th>
+                            <th scope="col">Ev tapşırığı</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    var table = $('#student-diary-table');
+    var groupApiRoute = "diary";
+    var studentScheduleCache = {};
+    function getStudentDiary(day) {
+
+
+        console.log(studentScheduleCache);
+        if(typeof studentScheduleCache[day] == 'undefined') {
+
+            table.append(loadingHtml);
+            standartRequest(requestType.get,groupApiRoute+'/'+day,'', function(data) {
+                studentScheduleCache[day] = data;
+                initTable(data);
+                $('#loadingHtml').remove();
+            });
+        }
+        else {
+            initTable(studentScheduleCache[day]);
+        }
+    }
+
+    function initTable(data) {
+
+        table.find('tbody').html('');
+        for(var n in data) {
+            table.find('tbody').append('<tr row_id="'+data[n].id+'"><th scope="row">'+(parseInt(n)+1)+'</th><td>'+_.escape(data[n].name)+'</td><td>'+(_.escape(data[n].teacherLastname)+' '+_.escape(data[n].teacherName))+'</td><td>'+_.escape(data[n].topic)+'</td><td>'+_.escape(data[n].task)+'</td><td>'+_.escape(data[n].mark)+'</td></tr>');
+        }
+    }
+
+    $(".weekly li[day]").click(function() {
+
+        var day = $(this).attr('day');
+        var date = $(this).find('.date').text();
+
+        if($(this).hasClass('selected'))
+            return;
+
+        $("li[day].selected").removeClass('selected');
+        $(this).addClass('selected');
+
+        $("#selectedDate").text(date);
+
+        getStudentDiary(day);
+
+    });
+
+
+    var weekDays = getCurrentWeekDays();
+    for(var n in weekDays) {
+        $('li[day="'+(parseInt(n)+1)+'"]').find('.date').text(weekDays[n].format('DD.MM.YYYY'));
+    }
+
+
+    var d = new Date();
+    var n = d.getDay();
+    $("li[day]:eq("+(parseInt(n)-1)+")").first().click();
+
+    $(".weekly [day]").find('.badge').text(0);
+    standartRequest(requestType.get,'student-dashboard/lessons-amount-grouped-by-weekdays','',function (data) {
+        for(var n in data) {
+            var day = data[n]['weekday'];
+            var lessonCount = data[n]['amount'];
+
+            $(".weekly [day='"+(parseInt(day))+"']").find('.badge').text(lessonCount);
+        }
+    });
+
+    $("#activeModuleName").text("Gündəlik");
+</script>

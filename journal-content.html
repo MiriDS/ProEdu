@@ -76,7 +76,7 @@
                                             </div>
                                             <div class="controls">
                                                 <div class="button-items">
-                                                    <button id="save-lesson-title" type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Redaktə et">
+                                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light save-lesson-title" data-toggle="tooltip" data-placement="top" title="" data-original-title="Redaktə et">
                                                         <i class="dripicons-pencil"></i>
                                                     </button>
                                                     <!--<button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Təmizlə">
@@ -85,22 +85,22 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <!--<li>
+                                        <li>
                                             <div class="heading">Ev tapşırığı:</div>
                                             <div class="content">
-                                                <input type="text" class="form-control form-control-sm">
+                                                <input type="text" name="lesson-task"  class="form-control form-control-sm">
                                             </div>
                                             <div class="controls">
                                                 <div class="button-items">
-                                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Redaktə et">
+                                                    <buttons type="button" class="btn btn-secondary btn-sm waves-effect waves-light save-lesson-title" data-toggle="tooltip" data-placement="top" title="" data-original-title="Redaktə et">
                                                         <i class="dripicons-pencil"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Təmizlə">
+                                                    </buttons>
+                                                    <!--button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Təmizlə">
                                                         <i class="dripicons-trash"></i>
-                                                    </button>
+                                                    </button>-->
                                                 </div>
                                             </div>
-                                        </li>-->
+                                        </li>
                                         <div class="start-lesson">
                                             <button class="btn btn-secondary btn-rounded waves-effect waves-light join_meeting" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Distant dərsi başlat">
                                                 <i class="dripicons-camera"></i>
@@ -311,10 +311,15 @@
         var lessonDate = $(this).attr("date");
 
         $("[name=lesson-title]").val('');
+        $("[name=lesson-task]").val('');
+
         standartRequest(requestType.get, 'lessons/' + lessonId + '/' + lessonDate, '', function (data) {
 
-            if(data)
-            $("[name=lesson-title]").val(data.topic);
+            if(data) {
+
+                $("[name=lesson-title]").val(data.topic);
+                $("[name=lesson-task]").val(data.task);
+            }
 
         });
 
@@ -334,7 +339,7 @@
 
                 var studentName = _.escape(data[n].name)+' '+_.escape(data[n].lastname)+' '+_.escape(data[n].patronymic);
                 studentTable.append('<tr student-id="'+data[n]['id']+'">\n' +
-                    '                                        <th scope="row">1</th>\n' +
+                    '                                        <th scope="row">'+(parseInt(n)+1)+'</th>\n' +
                     '                                        <td>'+studentName+'</td>\n' +
                     '                                        <td>\n' +
                     '                                            <select name="rate" class="form-control form-control-sm">'+ratesHtml +'</select>\n' +
@@ -375,22 +380,25 @@
 
     });
 
-    $("#save-lesson-title").unbind("click").click(function() {
+    $(".save-lesson-title").unbind("click").click(function() {
         var title = $("[name=lesson-title]").val();
+        var task = $("[name=lesson-task]").val();
 
-        if(title!='') {
+
+        //if(title!='') {
             var lessonId = $('#journal-dates li.selected').attr("lesson-id");
             var lessonDate = $('#journal-dates li.selected').attr("date");
 
             var dataObject = {
                 "groupSchedule": parseInt(lessonId),
                 "lessonDate": lessonDate,
-                "topic": title
+                "topic": title,
+                "task": task
             };
 
             standartRequest(requestType.post, 'lessons', dataObject, function (data) {
             });
-        }
+        //}
     });
 
     $('.join_meeting').click(function () {

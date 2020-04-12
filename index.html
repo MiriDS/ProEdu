@@ -139,6 +139,12 @@
                                     </a>
                                 </li>
 
+                                <li class="nav-item"  role-scope="student">
+                                    <a class="nav-link" menu-item href="#student-diary">
+                                        Gündəlik
+                                    </a>
+                                </li>
+
 
 
                                 <li class="nav-item dropdown" role-scope="admin">
@@ -155,7 +161,7 @@
                                                 <a href="#schedule" menu-item class="dropdown-item">Cədvəl</a>
                                                 <a href="#lesson-history" menu-item class="dropdown-item">Dərs tarixçəsi</a>
                                                 <a href="#journal"  menu-item class="dropdown-item">Jurnal</a>
-                                                <a href="javascript:void(0)" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();" menu-item class="dropdown-item">Gündəlik</a>
+                                                <!--<a href="javascript:void(0)" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();" menu-item class="dropdown-item">Gündəlik</a>-->
                                                 <a href="javascript:void(0)" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();" menu-item class="dropdown-item">Tapşırıqlar</a>                                                
                                             </div>
                                         </div>
@@ -283,7 +289,7 @@
                                         </div>
                                     </li>
 
-                                    <li class="disabled" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();">
+                                    <!--<li class="disabled" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();">
                                         <div class="card">
                                             <div class="card-body">
                                                 <span></span>
@@ -293,7 +299,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li>-->
 
                                     <li class="disabled" onclick="alertify.alert().setHeader('Bildiriş!').setting({'label':'Bağla','message': 'Modul hazırlıq mərhələsindədir!',}).show();">
                                         <div class="card">
@@ -848,6 +854,7 @@
             $("[role-scope='teacher'] ").remove();
         }
         else if(personInfo.role==4) {
+            $("[role-scope='student']").show();
             $("[role-scope='admin'],[role-scope='teacher'],[role-scope='admin-teacher']").remove();
         }
 
